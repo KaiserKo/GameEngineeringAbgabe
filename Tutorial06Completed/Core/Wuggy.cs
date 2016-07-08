@@ -19,7 +19,7 @@ namespace Fusee.Tutorial.Core
         private int money;
 
         private Animation animation;
-        public Channel<float3> channel;
+        public List<Channel<float3>> channelList;
         
 
         public Wuggy(SceneContainer _model, float3 _position, int _size, float3 _color, int _speed, int _health, int _money)
@@ -43,15 +43,13 @@ namespace Fusee.Tutorial.Core
 
         public void SetUpAnimations()
         {
+            AnimationManager animationManager = new AnimationManager();
+
             animation = new Animation(0);
-            channel = new Channel<float3>(Lerp.Float3Lerp);
+            channelList = animationManager.getAnimation(0);
 
-            channel.AddKeyframe(new Keyframe<float3>(0, new float3(0, 0, 0)));
-            channel.AddKeyframe(new Keyframe<float3>(1, new float3(20, 80, 80)));
-            channel.AddKeyframe(new Keyframe<float3>(4, new float3(160, 40, 80)));
-            channel.AddKeyframe(new Keyframe<float3>(10, new float3(160, 20, 320)));
-
-            animation.AddAnimation(channel, model.Children[0].GetTransform(), "Translation");
+            animation.AddAnimation(channelList.ElementAt(0), model.Children[0].GetTransform(), "Translation");
+            animation.AddAnimation(channelList.ElementAt(1), model.Children[0].GetTransform(), "Rotation");
         }
 
         public SceneContainer Model { get { return model; } set { model = value; } }

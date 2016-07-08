@@ -43,12 +43,14 @@
     <OutputRoot>$(ProjectBuildRoot)\bin\$(Configuration)\</OutputRoot>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AnimationManager.cs" />
     <Compile Include="MapButtonEventArgs.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Tower.cs" />
     <Compile Include="Tutorial.cs" />
+    <Compile Include="WaveManager.cs" />
     <Compile Include="Wuggy.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +120,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\AmericanCaptain.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\TD-Map-2_V6.fus">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

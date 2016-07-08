@@ -10,6 +10,7 @@ using Fusee.Xene;
 using static Fusee.Engine.Core.Input;
 using static Fusee.Engine.Core.Time;
 using System.IO;
+using static System.Math;
 #if GUI_SIMPLE
 using Fusee.Engine.Core.GUI;
 #endif
@@ -31,7 +32,6 @@ namespace Fusee.Tutorial.Core
 
         private SceneContainer _scene;
         private SceneContainer _tower;
-        private SceneContainer _wuggy;
         private float4x4 _sceneScale;
         private float4x4 _projection;
         private bool _twoTouchRepeated;
@@ -41,7 +41,9 @@ namespace Fusee.Tutorial.Core
         private Renderer _renderer;
 
         private Dictionary<int, Tower> listTowers;
-        private List<Wuggy> listWuggys;
+        private static List<Wuggy> listWuggys;
+
+        private WaveManager wManager;
 
         private bool isTowerSelected;
         private bool isUgradeMode;
@@ -92,7 +94,21 @@ namespace Fusee.Tutorial.Core
         private GUIButton rangeUpgradeButton;
         private GUIButton damageUpgradeText;
         private GUIButton damageUpgradeButton;
-        #endif
+
+        internal static List<Wuggy> ListWuggys
+        {
+            get
+            {
+                return listWuggys;
+            }
+
+            set
+            {
+                listWuggys = value;
+            }
+        }
+
+#endif
         #endregion
 
         // Init is called on startup. 
@@ -105,20 +121,19 @@ namespace Fusee.Tutorial.Core
             listTowers = new Dictionary<int, Tower>();
             listWuggys = new List<Wuggy>();
 
+            wManager = new WaveManager();
+
             isTowerSelected = false;
             isUgradeMode = false;
             towerCosts = 100;
 
-            animationStatus = false;
+            animationStatus = true;
 
             // Load the scene
-            _scene = AssetStorage.Get<SceneContainer>("TDMAPinWuggyFINAL.fus");
+            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V6.fus");
             _tower = AssetStorage.Get<SceneContainer>("TowerRed.fus");
-            _wuggy = AssetStorage.Get<SceneContainer>("WuggyFromLand.fus");
 
             _sceneScale = float4x4.CreateScale(0.04f);
-
-            listWuggys.Add(new Wuggy(DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.9f, 0.2f), 0, 1, 100));
             
             // Instantiate our self-written renderer
             _renderer = new Renderer(RC);
@@ -482,7 +497,6 @@ namespace Fusee.Tutorial.Core
             _angleRoll = M.MinAngle(_angleRoll);
 
             //GUI
-            //RC.Projection = float4x4.CreateOrthographic(0, 0, 1280, 720);
             RC.Viewport(0, 0, 1280, 720);
 
 
@@ -525,7 +539,9 @@ namespace Fusee.Tutorial.Core
                 _renderer.Traverse(t.Model.Children);
             }
 
-            foreach (Wuggy w in listWuggys)
+            var wuggyBuffer = new List<Wuggy>(listWuggys);
+
+            foreach (Wuggy w in wuggyBuffer)
             {
                 _renderer.Traverse(w.Model.Children);
             }
@@ -542,17 +558,38 @@ namespace Fusee.Tutorial.Core
 
             foreach (Tower t in listTowers.Values)
             {
+
+                SceneContainer target = t.getClosestWuggy();
+                TransformComponent towerTop = t.Model.Children.FindNodes(c => c.Name == "Top").First().GetTransform();
+                float topYaw = 0;
+// TODO: TowerTop Rotation hat in der Rotation noch einen mathematischen Fehler
+                if (target != null)
+                {
+                    float3 delta = target.Children[0].GetTransform().Translation - towerTop.Translation;
+                    topYaw = (float)Atan2(-delta.x, -delta.z) - towerTop.Rotation.y;
+                }
+
+                topYaw = NormRot(topYaw);
+                float deltaAngle = topYaw - towerTop.Rotation.y;
+                if (deltaAngle > M.Pi)
+                    deltaAngle = deltaAngle - M.TwoPi;
+                if (deltaAngle < -M.Pi)
+                    deltaAngle = deltaAngle + M.TwoPi; ;
+                var newYaw = towerTop.Rotation.y + (float)M.Clamp(deltaAngle, -0.06, 0.06);
+                newYaw = NormRot(newYaw);
+                towerTop.Rotation.y = newYaw;
+
                 _renderer.Traverse(t.Model.Children);
             }
 
-            foreach (Wuggy w in listWuggys)
+            foreach (Wuggy w in wuggyBuffer)
             {
                 _renderer.Traverse(w.Model.Children);
             }
 
             if (animationStatus)
             {
-                foreach (Wuggy w in listWuggys)
+                foreach (Wuggy w in wuggyBuffer)
                 {
                     w.Animation.Animate(DeltaTime);
                 }
@@ -588,7 +625,6 @@ namespace Fusee.Tutorial.Core
             // Back clipping happens at 2000 (Anything further away from the camera than 2000 world units gets clipped, polygons will be cut)
             _projection = float4x4.CreatePerspectiveFieldOfView(M.PiOver4, aspectRatio, 1, 20000);
         }
-
 
         #if GUI_SIMPLE
         void setButtonPosition(GUIButton button, int posX, int posY)
@@ -704,7 +740,8 @@ namespace Fusee.Tutorial.Core
 
         void startButtonClicked(GUIButton sender, GUIButtonEventArgs mea)
         {
-            animationStatus = !animationStatus;
+            wManager.spawnWave();
+            //animationStatus = !animationStatus;
         }
 
         void updateStatusPanel()
@@ -727,7 +764,6 @@ namespace Fusee.Tutorial.Core
                 }
             }
         }
-
         #endif
 
         public static T DeepCopy<T>(T source) where T : class

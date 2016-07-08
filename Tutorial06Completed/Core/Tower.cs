@@ -2,10 +2,8 @@
 using Fusee.Math.Core;
 using Fusee.Serialization;
 using Fusee.Xene;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Fusee.Tutorial.Core
 {
@@ -26,6 +24,23 @@ namespace Fusee.Tutorial.Core
             model = _model;
 
             model.Children.First().GetTransform().Translation = position;
+        }
+
+        public SceneContainer getClosestWuggy()
+        {
+            float minDist = float.MaxValue;
+            SceneContainer ret = null;
+            foreach (var target in Tutorial.ListWuggys)
+            {
+                var xf = target.Model.Children[0].GetTransform();
+                float dist = (position - xf.Translation).Length;
+                if (dist < minDist && dist < 1000)
+                {
+                    ret = target.Model;
+                    minDist = dist;
+                }
+            }
+            return ret;
         }
 
         public SceneContainer Model { get { return model; } set { model = value; }}
