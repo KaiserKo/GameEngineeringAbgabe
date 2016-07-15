@@ -30,7 +30,7 @@ namespace Fusee.Tutorial.Core
         private const float RotationSpeed = 7;
         private const float Damping = 0.8f;
 
-        private SceneContainer _scene;
+        public static SceneContainer _scene;
         private SceneContainer _tower;
         private float4x4 _sceneScale;
         private float4x4 _projection;
@@ -130,7 +130,7 @@ namespace Fusee.Tutorial.Core
             animationStatus = true;
 
             // Load the scene
-            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V6.fus");
+            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V7.fus");
             _tower = AssetStorage.Get<SceneContainer>("TowerRed.fus");
 
             _sceneScale = float4x4.CreateScale(0.04f);

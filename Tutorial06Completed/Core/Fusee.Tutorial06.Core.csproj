@@ -122,7 +122,7 @@
     <Content Include="Assets\AmericanCaptain.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\TD-Map-2_V6.fus">
+    <Content Include="Assets\TD-Map-2_V7.fus">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

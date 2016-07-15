@@ -17,10 +17,10 @@ namespace Fusee.Tutorial.Core
         private float3 color;
         private int size;
         private int money;
+        private int animationNumber;
 
         private Animation animation;
         public List<Channel<float3>> channelList;
-        
 
         public Wuggy(SceneContainer _model, float3 _position, int _size, float3 _color, int _speed, int _health, int _money)
         {
@@ -38,6 +38,26 @@ namespace Fusee.Tutorial.Core
             var scaleFactor = size * 0.1f;
             model.Children.First().GetTransform().Scale = new float3(scaleFactor, scaleFactor, scaleFactor);
 
+            SetUpRandomAnimations();
+        }
+
+        public Wuggy(SceneContainer _model, float3 _position, int _size, float3 _color, int _speed, int _health, int _money, int _animationNumber)
+        {
+
+            model = _model;
+            position = _position;
+            size = _size;
+            color = _color;
+            speed = _speed;
+            health = _health;
+            money = _money;
+            animationNumber = _animationNumber;
+
+            model.Children.First().GetTransform().Translation = position;
+            model.Children.FindNodes(n => n.Name == "Body").First().GetMaterial().Diffuse.Color = _color;
+            var scaleFactor = size * 0.1f;
+            model.Children.First().GetTransform().Scale = new float3(scaleFactor, scaleFactor, scaleFactor);
+
             SetUpAnimations();
         }
 
@@ -46,7 +66,18 @@ namespace Fusee.Tutorial.Core
             AnimationManager animationManager = new AnimationManager();
 
             animation = new Animation(0);
-            channelList = animationManager.getAnimation(0);
+            channelList = animationManager.getAnimation(animationNumber);
+
+            animation.AddAnimation(channelList.ElementAt(0), model.Children[0].GetTransform(), "Translation");
+            animation.AddAnimation(channelList.ElementAt(1), model.Children[0].GetTransform(), "Rotation");
+        }
+
+        public void SetUpRandomAnimations()
+        {
+            AnimationManager animationManager = new AnimationManager();
+
+            animation = new Animation(0);
+            channelList = animationManager.getRandomAnimation();
 
             animation.AddAnimation(channelList.ElementAt(0), model.Children[0].GetTransform(), "Translation");
             animation.AddAnimation(channelList.ElementAt(1), model.Children[0].GetTransform(), "Rotation");
