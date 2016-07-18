@@ -61,7 +61,8 @@ namespace Fusee.Tutorial.Core
             rotation.Add("suedenPI", new float3(0, (float)(2 * PI), 0));
         }
 
-// TODO: Animationen anlegen
+// TODO: Animation - Zeiten an Raster anpassen
+// TODO: Animation - Rotation einbauen
         public List<Channel<float3>> getAnimation(int anim)
         {
             switch (anim)

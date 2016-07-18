@@ -560,24 +560,28 @@ namespace Fusee.Tutorial.Core
             {
 
                 SceneContainer target = t.getClosestWuggy();
-                TransformComponent towerTop = t.Model.Children.FindNodes(c => c.Name == "Top").First().GetTransform();
+                TransformComponent towerTop = t.Model.Children.FindNodes(c => c.Name == "Tower").First().GetTransform();
                 float topYaw = 0;
 // TODO: TowerTop Rotation hat in der Rotation noch einen mathematischen Fehler
                 if (target != null)
                 {
                     float3 delta = target.Children[0].GetTransform().Translation - towerTop.Translation;
-                    topYaw = (float)Atan2(-delta.x, -delta.z) - towerTop.Rotation.y;
+                    topYaw = (float)Atan2(delta.z, -delta.x); // - towerTop.Rotation.y;
+                    //towerTop.Rotation.y = topYaw;
+                    
+                    topYaw = NormRot(topYaw);
+                    float deltaAngle = topYaw - towerTop.Rotation.y;
+                    if (deltaAngle > M.Pi)
+                        deltaAngle = deltaAngle - M.TwoPi;
+                    if (deltaAngle < -M.Pi)
+                        deltaAngle = deltaAngle + M.TwoPi; ;
+                    var newYaw = towerTop.Rotation.y + (float)M.Clamp(deltaAngle, -0.08, 0.08);
+                    // var newYaw = towerTop.Rotation.y + deltaAngle;
+                    newYaw = NormRot(newYaw);
+                    towerTop.Rotation.y = newYaw;
+                    
                 }
 
-                topYaw = NormRot(topYaw);
-                float deltaAngle = topYaw - towerTop.Rotation.y;
-                if (deltaAngle > M.Pi)
-                    deltaAngle = deltaAngle - M.TwoPi;
-                if (deltaAngle < -M.Pi)
-                    deltaAngle = deltaAngle + M.TwoPi; ;
-                var newYaw = towerTop.Rotation.y + (float)M.Clamp(deltaAngle, -0.06, 0.06);
-                newYaw = NormRot(newYaw);
-                towerTop.Rotation.y = newYaw;
 
                 _renderer.Traverse(t.Model.Children);
             }
