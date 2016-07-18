@@ -17,15 +17,57 @@ using Fusee.Engine.Core.GUI;
 
 namespace Fusee.Tutorial.Core
 {
+
+    public delegate void RepeatAction();
+    public class RepeatStruct
+    {
+        public float TimeOut;
+        public float TimeElapsed;
+        public RepeatAction RepAction;
+    }
+
+
+
+
     [FuseeApplication(Name = "Tutorial Example", Description = "The official FUSEE Tutorial.")]
     public class Tutorial : RenderCanvas
     {
+        List<RepeatStruct> _repeatList = new List<RepeatStruct>();
+        int _repeatListEntries;
+
+        public int InvokeRepeating(RepeatAction action, float timeOut)
+        {
+            int iRet = _repeatList.Count;
+            _repeatList.Add(new RepeatStruct { TimeElapsed = 0, TimeOut = timeOut, RepAction = action });
+            return iRet;
+        }
+
+        public void StopRepeating(int inx)
+        {
+            _repeatList.RemoveAt(inx);
+        }
+
+        public void TickRepeatList(float deltaTime)
+        {
+            foreach (var repStruct in _repeatList)
+            {
+                repStruct.TimeElapsed += deltaTime;
+                if (repStruct.TimeElapsed > repStruct.TimeOut)
+                {
+                    repStruct.RepAction();
+                    repStruct.TimeElapsed = 0;
+                }
+            }
+        }
+
         #region Variables
         // angle variables
         private static float _angleHorz = M.PiOver6 * 2.0f, _angleVert = -M.PiOver6 * 0.5f,
                              _angleVelHorz, _angleVelVert, _angleRoll, _angleRollInit, _zoomVel, _zoom;
         private static float2 _offset;
         private static float2 _offsetInit;
+
+        private float3 camPosition;
 
         private const float RotationSpeed = 7;
         private const float Damping = 0.8f;
@@ -97,15 +139,8 @@ namespace Fusee.Tutorial.Core
 
         internal static List<Wuggy> ListWuggys
         {
-            get
-            {
-                return listWuggys;
-            }
-
-            set
-            {
-                listWuggys = value;
-            }
+            get { return listWuggys; }
+            set { listWuggys = value; }
         }
 
 #endif
@@ -114,7 +149,11 @@ namespace Fusee.Tutorial.Core
         // Init is called on startup. 
         public override void Init()
         {
-            
+            InvokeRepeating(delegate ()
+            {
+                Diagnostics.Log("Tick");
+            }, 10);
+
             Width = 1295;
             Height = 760;
 
@@ -522,11 +561,37 @@ namespace Fusee.Tutorial.Core
                 AlphaBlendEnable = false,
                 ZEnable = true
             });
-            
+
+            TickRepeatList(Time.DeltaTime);
+
             // Create the camera matrix and set it as the current ModelView transformation
             var mtxRot = float4x4.CreateRotationZ(_angleRoll) * float4x4.CreateRotationX(_angleVert) * float4x4.CreateRotationY(_angleHorz);
-            var mtxCam = float4x4.LookAt(0, 20, -_zoom, 0, 0, 0, 0, 1, 0);
-            _renderer.View = mtxCam * mtxRot * _sceneScale;
+            var mtxTrans = float4x4.Mult(mtxRot, float4x4.CreateTranslation(camPosition));
+            var mtxCam = float4x4.LookAt(0, 0, -_zoom, 0, 0, 0, 0, 1, 0);
+            var temp = float4x4.CreateTranslation(camPosition);
+
+            if (Keyboard.GetKey(KeyCodes.W))
+            {
+                camPosition.z += 1.0f * (float)Sin(_angleHorz - (PI / 2));
+                camPosition.x += 1.0f * (float)Cos(_angleHorz - (PI / 2));
+            }
+            if (Keyboard.GetKey(KeyCodes.S))
+            {
+                camPosition.z += 1.0f * (float)Sin(_angleHorz + (PI / 2));
+                camPosition.x += 1.0f * (float)Cos(_angleHorz + (PI / 2));
+            }
+            if (Keyboard.GetKey(KeyCodes.A))
+            {
+                camPosition.z += 1.0f * (float)Sin(_angleHorz);
+                camPosition.x += 1.0f * (float)Cos(_angleHorz);
+            }
+            if (Keyboard.GetKey(KeyCodes.D))
+            {
+                camPosition.z -= 1.0f * (float)Sin(_angleHorz);
+                camPosition.x -= 1.0f * (float)Cos(_angleHorz);
+            }
+
+            _renderer.View = mtxCam * mtxTrans * _sceneScale;
             var mtxOffset = float4x4.CreateTranslation(2 * _offset.x / Width, -2 * _offset.y / Height, 0);
             RC.Projection = mtxOffset * _projection;
             RC.Viewport(0, 0, 880, 720);
@@ -567,18 +632,18 @@ namespace Fusee.Tutorial.Core
                 {
                     float3 delta = target.Children[0].GetTransform().Translation - towerTop.Translation;
                     topYaw = (float)Atan2(delta.z, -delta.x); // - towerTop.Rotation.y;
-                    //towerTop.Rotation.y = topYaw;
+                    towerTop.Rotation.y = topYaw;
                     
-                    topYaw = NormRot(topYaw);
-                    float deltaAngle = topYaw - towerTop.Rotation.y;
-                    if (deltaAngle > M.Pi)
-                        deltaAngle = deltaAngle - M.TwoPi;
-                    if (deltaAngle < -M.Pi)
-                        deltaAngle = deltaAngle + M.TwoPi; ;
-                    var newYaw = towerTop.Rotation.y + (float)M.Clamp(deltaAngle, -0.08, 0.08);
-                    // var newYaw = towerTop.Rotation.y + deltaAngle;
-                    newYaw = NormRot(newYaw);
-                    towerTop.Rotation.y = newYaw;
+                    //topYaw = NormRot(topYaw);
+                    //float deltaAngle = topYaw - towerTop.Rotation.y;
+                    //if (deltaAngle > M.Pi)
+                    //    deltaAngle = deltaAngle - M.TwoPi;
+                    //if (deltaAngle < -M.Pi)
+                    //    deltaAngle = deltaAngle + M.TwoPi; ;
+                    //var newYaw = towerTop.Rotation.y + (float)M.Clamp(deltaAngle, -0.08, 0.08);
+                    //// var newYaw = towerTop.Rotation.y + deltaAngle;
+                    //newYaw = NormRot(newYaw);
+                    //towerTop.Rotation.y = newYaw;
                     
                 }
 
