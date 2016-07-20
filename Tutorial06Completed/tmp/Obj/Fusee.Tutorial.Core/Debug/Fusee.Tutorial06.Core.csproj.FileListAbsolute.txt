@@ -46,3 +46,4 @@ D:\Game-Engineering\Fusee\GameEngineeringAbgabe\Tutorial06Completed\tmp\Obj\Fuse
 D:\Game-Engineering\Fusee\GameEngineeringAbgabe\Tutorial06Completed\bin\Debug\Libraries\Assets\TD-Map-2_V7.fus
 D:\Game-Engineering\Fusee\GameEngineeringAbgabe\Tutorial06Completed\bin\Debug\Libraries\Assets\Sphere.fus
 D:\Game-Engineering\Fusee\GameEngineeringAbgabe\Tutorial06Completed\bin\Debug\Libraries\Assets\TD-Map-2_V9.fus
+D:\Game-Engineering\Fusee\GameEngineeringAbgabe\Tutorial06Completed\bin\Debug\Libraries\Assets\TD-Map-2_V10.fus

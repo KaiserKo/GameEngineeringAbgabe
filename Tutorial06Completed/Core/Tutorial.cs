@@ -183,7 +183,7 @@ namespace Fusee.Tutorial.Core
             animationStatus = true;
 
             // Load the scene
-            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V9.fus");
+            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V10.fus");
             _tower = AssetStorage.Get<SceneContainer>("TowerRed.fus");
             towerBullet = AssetStorage.Get<SceneContainer>("Sphere.fus");
 
