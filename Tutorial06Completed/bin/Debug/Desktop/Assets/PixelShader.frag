@@ -18,7 +18,7 @@ void main()
 	vec3 nnormal = normalize(normal);
 	
 	// Diffuse
-	vec3 lightdir = vec3(0, 0, -1);
+	vec3 lightdir = vec3(0, 1, -1);
     float intensityDiff = dot(nnormal, lightdir);
 	// vec3 resultingAlbedo = (1.0-texmix) * albedo + texmix * vec3(texture2D(texture, uv));
 
