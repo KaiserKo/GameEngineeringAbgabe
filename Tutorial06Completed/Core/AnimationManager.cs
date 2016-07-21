@@ -25,20 +25,24 @@ namespace Fusee.Tutorial.Core
         private float3 startPoint;
         private float3 endPoint;
         private List<float3> kreuzung = new List<float3>();
-        private Dictionary<String, float3> rotation = new Dictionary<string, float3>();
 
         public AnimationManager()
         {
             speed = 1;
             getKreuzungen();
-            fillRotation();
         }
 
         public AnimationManager(float _speed)
         {
-            speed = _speed;
+            if (_speed > 0)
+            {
+                speed = _speed;
+            }
+            else
+            {
+                speed = 1;
+            }
             getKreuzungen();
-            fillRotation();
         }
 
         private void getKreuzungen()
@@ -53,16 +57,7 @@ namespace Fusee.Tutorial.Core
             endPoint = new float3(6700.0f, 0, 2024.351f);
         }
 
-        private void fillRotation()
-        {
-            rotation.Add("norden", new float3(0, (float)PI, 0));
-            rotation.Add("osten", new float3(0, (float)(PI + (PI / 2)), 0));
-            rotation.Add("suedenNULL", new float3(0, 0, 0));
-            rotation.Add("suedenPI", new float3(0, (float)(2 * PI), 0));
-        }
-
 // TODO: Animation - Speed-Komponente einbauen
-// TODO: Animation - Rotation einbauen
         public List<Channel<float3>> getAnimation(int anim, Wuggy wuggy)
         {
             wuggy.Model.Children.First().GetTransform().Rotation.y = (float)(PI + (PI / 2));
@@ -72,49 +67,49 @@ namespace Fusee.Tutorial.Core
                 case 0:
                     #region Translation
                     translationChannel.AddKeyframe(new Keyframe<float3>(0.0f, startPoint));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(5.0f, kreuzung[14]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(5.0f / speed, kreuzung[14]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(5.5f, kreuzung[14]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(17.5f, kreuzung[13]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(5.5f / speed, kreuzung[14]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(17.5f / speed, kreuzung[13]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(18.0f, kreuzung[13]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(21.5f, kreuzung[12]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(18.0f / speed, kreuzung[13]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(21.5f / speed, kreuzung[12]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(22.0f, kreuzung[12]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(27.0f, kreuzung[11]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(22.0f / speed, kreuzung[12]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(27.0f / speed, kreuzung[11]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(27.5f, kreuzung[11]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(37.5f, kreuzung[10]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(27.5f / speed, kreuzung[11]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(37.5f / speed, kreuzung[10]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(38.0f, kreuzung[10]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(41.0f, kreuzung[9]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(38.0f / speed, kreuzung[10]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(41.0f / speed, kreuzung[9]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(41.5f, kreuzung[9]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(43.5f, kreuzung[8]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(41.5f / speed, kreuzung[9]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(43.5f / speed, kreuzung[8]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(44.0f, kreuzung[8]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(52.5f, kreuzung[7]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(44.0f / speed, kreuzung[8]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(52.5f / speed, kreuzung[7]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(53.0f, kreuzung[7]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(65.0f, kreuzung[6]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(53.0f / speed, kreuzung[7]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(65.0f / speed, kreuzung[6]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(65.5f, kreuzung[6]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(66.5f, kreuzung[5]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(65.5f / speed, kreuzung[6]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(66.5f / speed, kreuzung[5]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(67.0f, kreuzung[5]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(76.0f, kreuzung[4]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(67.0f / speed, kreuzung[5]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(76.0f / speed, kreuzung[4]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(76.5f, kreuzung[4]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(77.5f, kreuzung[3]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(76.5f / speed, kreuzung[4]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(77.5f / speed, kreuzung[3]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(78.0f, kreuzung[3]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(87.5f, kreuzung[2]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(78.0f / speed, kreuzung[3]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(87.5f / speed, kreuzung[2]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(88.0f, kreuzung[2]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(91.5f, kreuzung[0]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(88.0f / speed, kreuzung[2]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(91.5f / speed, kreuzung[0]));
 
-                    translationChannel.AddKeyframe(new Keyframe<float3>(92.0f, kreuzung[0]));
-                    translationChannel.AddKeyframe(new Keyframe<float3>(102.0f, endPoint));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(92.0f / speed, kreuzung[0]));
+                    translationChannel.AddKeyframe(new Keyframe<float3>(102.0f / speed, endPoint));
 
                     animationList.Add(translationChannel);
                     #endregion
@@ -122,49 +117,49 @@ namespace Fusee.Tutorial.Core
                     #region Rotation
                     rotationChannel.AddKeyframe(new Keyframe<float3>(0.0f, getWuggyRot(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(5.0f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(5.5f, turnLeft(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(5.0f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(5.5f / speed, turnLeft(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(17.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(18.0f, turnRight(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(17.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(18.0f / speed, turnRight(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(21.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(22.0f, turnRight(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(21.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(22.0f / speed, turnRight(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(27.0f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(27.5f, turnLeft(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(27.0f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(27.5f / speed, turnLeft(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(37.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(38.0f, turnRight(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(37.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(38.0f / speed, turnRight(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(41.0f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(41.5f, turnLeft(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(41.0f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(41.5f / speed, turnLeft(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(43.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(44.0f, turnLeft(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(43.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(44.0f / speed, turnLeft(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(52.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(53.0f, turnRight(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(52.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(53.0f / speed, turnRight(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(65.0f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(65.5f, turnLeft(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(65.0f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(65.5f / speed, turnLeft(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(66.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(67.0f, turnRight(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(66.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(67.0f / speed, turnRight(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(76.0f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(76.5f, turnLeft(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(76.0f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(76.5f / speed, turnLeft(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(77.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(78.0f, turnRight(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(77.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(78.0f / speed, turnRight(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(87.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(88.0f, turnRight(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(87.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(88.0f / speed, turnRight(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(91.5f, getWuggyRot(wuggy)));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(92.0f, turnLeft(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(91.5f / speed, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(92.0f / speed, turnLeft(wuggy)));
 
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(102.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(102.0f / speed, getWuggyRot(wuggy)));
 
                     animationList.Add(rotationChannel);
                     #endregion
