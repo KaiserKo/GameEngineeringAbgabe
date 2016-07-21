@@ -35,17 +35,21 @@ namespace Fusee.Tutorial.Core
         public WaveManager()
         {
             _wuggy = AssetStorage.Get<SceneContainer>("WuggyFromLand.fus");
-            waveCount = 1;
+            waveCount = 10;
         }
 
         public void spawnWave()
         {
-            isWaveActive = true;
             spawningListWuggys = new List<int>();
 
             if (waveCount > 5)
             {
-                maxNormalWuggys = 50;
+                int maxWuggysOverall = waveCount * 5;
+                maxNormalWuggys = (int)(maxWuggysOverall * 0.5);
+                maxSpeedWuggys = (int)(maxWuggysOverall * 0.2);
+                maxTankWuggys = (int)(maxWuggysOverall * 0.15);
+                maxSpeedTankWuggys = (int)(maxWuggysOverall * 0.1);
+                maxBossWuggys = (int)(maxWuggysOverall * 0.05);
             }
             else
             {
@@ -121,7 +125,6 @@ namespace Fusee.Tutorial.Core
             else
             {
                 timer.Dispose();
-                isWaveActive = false;
                 spawnedNormalWuggys = 0;
                 spawnedSpeedWuggys = 0;
                 spawnedTankWuggys = 0;
@@ -137,28 +140,28 @@ namespace Fusee.Tutorial.Core
             switch (_wuggyType)
             {
                 case 1:
-                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.2f, 0.9f), 1, 1.5f, 30, 20));
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.2f, 0.9f), 5, 1.5f, 50, 20));
                     spawnedNormalWuggys += 1;
                     break;
                 case 2:
-                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.9f, 0.2f), 1, 3.0f, 30, 30));
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.9f, 0.2f), 5, 3.0f, 50, 30));
                     spawnedSpeedWuggys += 1;
                     break;
                 case 3:
-                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 6, new float3(0.9f, 0.2f, 0.2f), 2, 1.5f, 50, 40));
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 6, new float3(0.9f, 0.2f, 0.2f), 10, 1.5f, 100, 40));
                     spawnedTankWuggys += 1;
                     break;
                 case 4:
-                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 6, new float3(0.2f, 0.9f, 0.9f), 2, 3.0f, 50, 60));
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 6, new float3(0.2f, 0.9f, 0.9f), 10, 3.0f, 100, 60));
                     spawnedSpeedTankWuggys += 1;
                     break;
                 case 5:
-                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.2f, 0.9f), 4, 1.0f, 100, 100));
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.2f, 0.9f), 20, 1.0f, 300, 100));
                     spawnedBossWuggys += 1;
                     break;
 
                 default:
-                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.2f, 0.9f), 1, 1.5f, 30, 20));
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.2f, 0.9f), 5, 1.5f, 30, 20));
                     spawnedNormalWuggys += 1;
                     break;
             }

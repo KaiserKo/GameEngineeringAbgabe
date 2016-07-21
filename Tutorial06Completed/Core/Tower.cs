@@ -15,8 +15,17 @@ namespace Fusee.Tutorial.Core
         private SceneContainer model;
         private float3 position;
         private int speed;
+        private int maxSpeedLevel = 5;
         private float range;
+        private float maxRangeLevel = 5;
         private int damage;
+        private int maxDamageLevel = 5;
+        public int currentDamageLevel;
+        public int currentRangeLevel;
+        public int currentSpeedLevel;
+        private int damageStep = 10;
+        private int rangeStep = 100;
+        private int speedStep = 100;
         public float3 cylinderPos;
         public List<Shot> towerBulletList;
         public List<Shot> removeShots;
@@ -24,6 +33,7 @@ namespace Fusee.Tutorial.Core
         public bool towerIsShoting;
         public Wuggy nextWuggy;
         private Timer timer;
+        private float3 color;
 
         public Tower(SceneContainer _model, float3 _position, int _speed, float _range, int _damage) {
             position = _position;
@@ -32,6 +42,13 @@ namespace Fusee.Tutorial.Core
             damage = _damage;
 
             model = _model;
+
+            currentDamageLevel = 0;
+            currentSpeedLevel = 0;
+            currentRangeLevel = 0;
+
+            color = new float3(0.5f, 0.5f, 0.5f);
+            model.Children.First().GetMaterial().Diffuse.Color = color;
 
             model.Children.First().GetTransform().Translation = position;
 
@@ -84,6 +101,51 @@ namespace Fusee.Tutorial.Core
                 towerBulletList.Remove(s);
                 removeShots.Remove(s);
             }
+        }
+
+        public int upgradeDamage()
+        {
+            int costs = 100 + (currentDamageLevel * 10);
+            if(currentDamageLevel < maxDamageLevel && Player.Money >= costs)
+            {
+                Player.Money -= costs;
+                currentDamageLevel++;
+                damage += damageStep;
+                color.r += 0.1f;
+                model.Children.First().GetMaterial().Diffuse.Color = color;
+                return 100 + (currentDamageLevel * 10);
+            }
+            return costs;
+        }
+
+        public int upgradeRange()
+        {
+            int costs = 100 + (currentRangeLevel * 10);
+            if (currentRangeLevel < maxRangeLevel && Player.Money >= costs)
+            {
+                Player.Money -= costs;
+                currentRangeLevel++;
+                range += rangeStep;
+                color.b += 0.1f;
+                model.Children.First().GetMaterial().Diffuse.Color = color;
+                return 100 + (currentRangeLevel * 10);
+            }
+            return costs;
+        }
+
+        public int upgradeSpeed()
+        {
+            int costs = 100 + (currentSpeedLevel * 10);
+            if (currentSpeedLevel < maxSpeedLevel && Player.Money >= costs)
+            {
+                Player.Money -= costs;
+                currentSpeedLevel++;
+                speed -= speedStep;
+                color.g += 0.1f;
+                model.Children.First().GetMaterial().Diffuse.Color = color;
+                return 100 + (currentSpeedLevel * 10);
+            }
+            return costs;
         }
 
         public SceneContainer Model { get { return model; } set { model = value; }}
@@ -179,6 +241,8 @@ namespace Fusee.Tutorial.Core
 
                 if (killed)
                 {
+                    Player.Money += wuggy.Money;
+
                     List<Shot> tempList = tower.towerBulletList;
                     foreach (Shot s in tempList)
                     {

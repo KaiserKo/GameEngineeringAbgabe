@@ -121,6 +121,7 @@ namespace Fusee.Tutorial.Core
         private float4 yellowColor;
         private float4 whiteColor;
         private float4 cyanColor;
+        private float4 greyColor;
 
         private List<GUIButton> mapButtons;
         #endif
@@ -180,7 +181,7 @@ namespace Fusee.Tutorial.Core
             animationStatus = true;
 
             // Load the scene
-            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V11.fus");
+            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V12.fus");
             _tower = AssetStorage.Get<SceneContainer>("TowerRed.fus");
             towerBullet = AssetStorage.Get<SceneContainer>("Sphere.fus");
 
@@ -195,6 +196,7 @@ namespace Fusee.Tutorial.Core
             yellowColor = new float4(1.0f, 0.9f, 0.0f, 1.0f);
             whiteColor = new float4(1.0f, 1.0f, 1.0f, 1.0f);
             cyanColor = new float4(0.0f, 0.7f, 0.7f, 1.0f);
+            greyColor = new float4(0.3f, 0.3f, 0.3f, 1.0f);
 
             #region UI
             #if GUI_SIMPLE
@@ -206,7 +208,7 @@ namespace Fusee.Tutorial.Core
             _guiCabinBlack = new FontMap(fontCabin, 18);
             _guiCabinBlackBig = new FontMap(fontCabin, 25);
 
-            guiText = new GUIText("Defend!", _guiCabinBlack, 310, 35);
+            guiText = new GUIText("", _guiCabinBlack, 310, 35);
             guiText.TextColor = new float4(0.05f, 0.25f, 0.15f, 0.8f);
             guiHandler.Add(guiText);
 
@@ -216,11 +218,11 @@ namespace Fusee.Tutorial.Core
             guiHandler.Add(guiPanelStatus);
 
             healthText = new GUIText("Health Village: 10", _guiCabinBlackBig, 900, 60);
-            healthText.TextColor = new float4(0.9f, 0.0f, 0.0f, 1.0f);
+            healthText.TextColor = new float4(1.0f, 0.49f, 0.35f, 1.0f);
             guiHandler.Add(healthText);
 
             moneyText = new GUIText("Money: 1000", _guiCabinBlackBig, 900, 90);
-            moneyText.TextColor = new float4(0.0f, 0.9f, 0.1f, 1.0f);
+            moneyText.TextColor = new float4(0.49f, 1.0f, 0.47f, 1.0f);
             guiHandler.Add(moneyText);
 
             guiPanelShop = new GUIPanel("Shop", _guiCabinBlack, 880, 370, 400, 250);
@@ -428,7 +430,7 @@ namespace Fusee.Tutorial.Core
             guiHandlerTowersUpgrade.Add(speedUpgradeText);
 
             speedUpgradeButton = new GUIButton("Speed Upgrade", _guiCabinBlack, 1080, 400, 180, 50);
-            //mapButtons[i].OnGUIButtonDown += mapOnGUIButtonDown;
+            speedUpgradeButton.OnGUIButtonDown += upgradeSpeed;
             speedUpgradeButton.OnGUIButtonEnter += shopButtonEnter;
             speedUpgradeButton.OnGUIButtonLeave += shopButtonLeave;
             guiHandlerTowersUpgrade.Add(speedUpgradeButton);
@@ -440,7 +442,7 @@ namespace Fusee.Tutorial.Core
             guiHandlerTowersUpgrade.Add(rangeUpgradeText);
 
             rangeUpgradeButton = new GUIButton("Range Upgrade", _guiCabinBlack, 1080, 475, 180, 50);
-            //mapButtons[i].OnGUIButtonDown += mapOnGUIButtonDown;
+            rangeUpgradeButton.OnGUIButtonDown += upgradeRange;
             rangeUpgradeButton.OnGUIButtonEnter += shopButtonEnter;
             rangeUpgradeButton.OnGUIButtonLeave += shopButtonLeave;
             guiHandlerTowersUpgrade.Add(rangeUpgradeButton);
@@ -452,7 +454,7 @@ namespace Fusee.Tutorial.Core
             guiHandlerTowersUpgrade.Add(damageUpgradeText);
 
             damageUpgradeButton = new GUIButton("Damage Upgrade", _guiCabinBlack, 1080, 550, 180, 50);
-            //mapButtons[i].OnGUIButtonDown += mapOnGUIButtonDown;
+            damageUpgradeButton.OnGUIButtonDown += upgradeDamage;
             damageUpgradeButton.OnGUIButtonEnter += shopButtonEnter;
             damageUpgradeButton.OnGUIButtonLeave += shopButtonLeave;
             guiHandlerTowersUpgrade.Add(damageUpgradeButton);
@@ -529,12 +531,14 @@ namespace Fusee.Tutorial.Core
                 }
             }
 
+            _angleVert = (float)M.Clamp(_angleVert, -PI, -0.1d);
+
             _zoom += _zoomVel;
             // Limit zoom
             if (_zoom < 80)
                 _zoom = 80;
-            if (_zoom > 2000)
-                _zoom = 2000;
+            if (_zoom > 250)
+                _zoom = 250;
 
             _angleHorz += _angleVelHorz;
             // Wrap-around to keep _angleHorz between -PI and + PI
@@ -601,6 +605,9 @@ namespace Fusee.Tutorial.Core
                 camPosition.z -= 2.0f * (float)Sin(_angleHorz);
                 camPosition.x -= 2.0f * (float)Cos(_angleHorz);
             }
+
+            camPosition.z = M.Clamp(camPosition.z, -135, 100);
+            camPosition.x = M.Clamp(camPosition.x, -350, 235);
 
             _renderer.View = mtxCam * mtxTrans * _sceneScale;
             var mtxOffset = float4x4.CreateTranslation(2 * _offset.x / Width, -2 * _offset.y / Height, 0);
@@ -672,7 +679,19 @@ namespace Fusee.Tutorial.Core
 
             foreach (Wuggy w in wuggyBuffer)
             {
+                if (w.Model.Children.First().GetTransform().Translation.x >= 6600.0f)
+                {
+                    Player.VillageHealth -= w.Damage;
+                    listWuggys.Remove(w);
+
+                    if(listWuggys.Count == 0)
+                    {
+                        checkWuggyList();
+                    }
+                }
+
                 _renderer.Traverse(w.Model.Children);
+
             }
 
             #region Minimap
@@ -695,6 +714,7 @@ namespace Fusee.Tutorial.Core
                 foreach (Wuggy w in wuggyBuffer)
                 {
                     w.Animation.Animate(DeltaTime);
+                    
                 }
             }
             #endregion
@@ -800,6 +820,9 @@ namespace Fusee.Tutorial.Core
             if (listTowers.ContainsKey(currentSelectedTower))
             {
                 isUgradeMode = true;
+                damageUpgradeButton.Text = "Damage Upgrade (" + (100 + (listTowers[currentSelectedTower].currentDamageLevel * 10)) + ")";
+                speedUpgradeButton.Text = "Speed Upgrade (" + (100 + (listTowers[currentSelectedTower].currentSpeedLevel * 10)) + ")";
+                rangeUpgradeButton.Text = "Range Upgrade (" + (100 + (listTowers[currentSelectedTower].currentRangeLevel * 10)) + ")";
             }
             else
             {
@@ -828,7 +851,29 @@ namespace Fusee.Tutorial.Core
 
                 Player.Money -= towerCosts;
                 isUgradeMode = true;
+
+                damageUpgradeButton.Text = "Damage Upgrade (" + (100 + (listTowers[currentSelectedTower].currentDamageLevel * 10)) + ")";
+                speedUpgradeButton.Text = "Speed Upgrade (" + (100 + (listTowers[currentSelectedTower].currentSpeedLevel * 10)) + ")";
+                rangeUpgradeButton.Text = "Range Upgrade (" + (100 + (listTowers[currentSelectedTower].currentRangeLevel * 10)) + ")";
             }
+        }
+
+        void upgradeDamage(GUIButton sender, GUIButtonEventArgs mea)
+        {
+            int newCosts = listTowers[currentSelectedTower].upgradeDamage();
+            sender.Text = "Damage Upgrade (" + newCosts + ")";
+        }
+
+        void upgradeSpeed(GUIButton sender, GUIButtonEventArgs mea)
+        {
+            int newCosts = listTowers[currentSelectedTower].upgradeSpeed();
+            sender.Text = "Speed Upgrade (" + newCosts + ")";
+        }
+
+        void upgradeRange(GUIButton sender, GUIButtonEventArgs mea)
+        {
+            int newCosts = listTowers[currentSelectedTower].upgradeRange();
+            sender.Text = "Range Upgrade (" + newCosts + ")";
         }
 
         void shopButtonEnter(GUIButton sender, GUIButtonEventArgs mea)
@@ -843,9 +888,24 @@ namespace Fusee.Tutorial.Core
 
         void startButtonClicked(GUIButton sender, GUIButtonEventArgs mea)
         {
+            checkWuggyList();
             if (wManager.isWaveActive == false)
             {
                 wManager.spawnWave();
+            }
+            checkWuggyList();
+        }
+
+        public void checkWuggyList()
+        {
+            if(listWuggys.Count != 0)
+            {
+                wManager.isWaveActive = true;
+                //startButton.ButtonColor = greyColor;
+            } else
+            {
+                wManager.isWaveActive = false;
+                //startButton.ButtonColor = whiteColor;
             }
         }
 
@@ -877,7 +937,7 @@ namespace Fusee.Tutorial.Core
             var stream = new MemoryStream();
             ser.Serialize(stream, source);
             stream.Position = 0;
-             return ser.Deserialize(stream, null, typeof(T)) as T;
+            return ser.Deserialize(stream, null, typeof(T)) as T;
         }
     }
 }

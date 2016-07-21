@@ -115,5 +115,31 @@ namespace Fusee.Tutorial.Core
                 size = value;
             }
         }
+
+        public int Damage
+        {
+            get
+            {
+                return damage;
+            }
+
+            set
+            {
+                damage = value;
+            }
+        }
+
+        public int Money
+        {
+            get
+            {
+                return money;
+            }
+
+            set
+            {
+                money = value;
+            }
+        }
     }
 }

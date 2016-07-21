@@ -77,3 +77,4 @@ C:\Users\Fabian\Documents\SourceTree\GameEngineeringAbgabe\Tutorial06Completed\b
 C:\Users\Fabian\Documents\SourceTree\GameEngineeringAbgabe\Tutorial06Completed\tmp\Obj\Fusee.Tutorial.Desktop\Debug\Fusee.Tutorial06.Desktop.csprojResolveAssemblyReference.cache
 C:\Users\Fabian\Documents\SourceTree\GameEngineeringAbgabe\Tutorial06Completed\tmp\Obj\Fusee.Tutorial.Desktop\Debug\Fusee.Tutorial.Desktop.exe
 C:\Users\Fabian\Documents\SourceTree\GameEngineeringAbgabe\Tutorial06Completed\tmp\Obj\Fusee.Tutorial.Desktop\Debug\Fusee.Tutorial.Desktop.pdb
+C:\Users\Fabian\Documents\SourceTree\GameEngineeringAbgabe\Tutorial06Completed\bin\Debug\Desktop\Assets\TD-Map-2_V12.fus
