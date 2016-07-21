@@ -12,6 +12,7 @@ namespace Fusee.Tutorial.Core
     class WaveManager
     {
         public int difficulty;
+        public int waveCount; 
         private SceneContainer _wuggy;
 
         private Timer timer;
@@ -31,7 +32,32 @@ namespace Fusee.Tutorial.Core
 
         private void spawnWuggy(Object state)
         {
-            if (newWave && spawnedWuggys < 10) {
+            
+            int maxWuggys;
+            
+            if(waveCount > 5){
+                maxWuggys = 50;
+            }
+            else{
+            switch (waveCount){
+                case 1:
+                maxWuggys = 5;
+                break;
+                case 2:
+                maxWuggys = 10;
+                break;
+                case 3:
+                maxWuggys = 15;
+                break;
+                case 4: 
+                maxWuggys = 20;
+                break;
+                case 5:
+                maxWuggys = 30;
+                break;
+            }
+            
+            if (newWave && spawnedWuggys < maxWuggys) {
                 spawnedWuggys += 1;
                 Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.9f, 0.2f), 0, 1, 100));
             }
@@ -39,6 +65,7 @@ namespace Fusee.Tutorial.Core
             {
                 timer.Dispose();
                 spawnedWuggys = 0;
+                waveCount++;
                 newWave = false;
             }
             
