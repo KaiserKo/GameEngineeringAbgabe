@@ -35,7 +35,7 @@ namespace Fusee.Tutorial.Core
         public WaveManager()
         {
             _wuggy = AssetStorage.Get<SceneContainer>("WuggyFromLand.fus");
-            waveCount = 10;
+            waveCount = 1;
         }
 
         public void spawnWave()

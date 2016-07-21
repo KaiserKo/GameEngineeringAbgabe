@@ -833,7 +833,7 @@ JSIL.DeclareNamespace("System.Configuration");
     );
 
     $.ExternalMethod({Static:false, Public:false}, "CheckLockedElement", 
-      new JSIL.MethodSignature(null, [$.String, $asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature(null, [$.String, $asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "CreateConfigurationPropertyFromAttributes", 
@@ -849,11 +849,11 @@ JSIL.DeclareNamespace("System.Configuration");
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "DeserializeElement", 
-      new JSIL.MethodSignature(null, [$asm13.TypeRef("System.Xml.XmlReader"), $.Boolean])
+      new JSIL.MethodSignature(null, [$asm16.TypeRef("System.Xml.XmlReader"), $.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "DeserializePropertyValue", 
-      new JSIL.MethodSignature($.Object, [$asm10.TypeRef("System.Configuration.ConfigurationProperty"), $asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature($.Object, [$asm10.TypeRef("System.Configuration.ConfigurationProperty"), $asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "Dump", 
@@ -1009,7 +1009,7 @@ JSIL.DeclareNamespace("System.Configuration");
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "OnDeserializeUnrecognizedElement", 
-      new JSIL.MethodSignature($.Boolean, [$.String, $asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature($.Boolean, [$.String, $asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "OnRequiredPropertyNotFound", 
@@ -1025,7 +1025,7 @@ JSIL.DeclareNamespace("System.Configuration");
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "PreSerialize", 
-      JSIL.MethodSignature.Action($asm13.TypeRef("System.Xml.XmlWriter"))
+      JSIL.MethodSignature.Action($asm16.TypeRef("System.Xml.XmlWriter"))
     );
 
     $.ExternalMethod({Static:true , Public:false}, "PropertiesFromType", 
@@ -1068,18 +1068,18 @@ JSIL.DeclareNamespace("System.Configuration");
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "SerializeElement", 
-      new JSIL.MethodSignature($.Boolean, [$asm13.TypeRef("System.Xml.XmlWriter"), $.Boolean])
+      new JSIL.MethodSignature($.Boolean, [$asm16.TypeRef("System.Xml.XmlWriter"), $.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "SerializeLockList", 
       new JSIL.MethodSignature($.Boolean, [
           $asm10.TypeRef("System.Configuration.ConfigurationLockCollection"), $.String, 
-          $asm13.TypeRef("System.Xml.XmlWriter")
+          $asm16.TypeRef("System.Xml.XmlWriter")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "SerializeToXmlElement", 
-      new JSIL.MethodSignature($.Boolean, [$asm13.TypeRef("System.Xml.XmlWriter"), $.String])
+      new JSIL.MethodSignature($.Boolean, [$asm16.TypeRef("System.Xml.XmlWriter"), $.String])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "set_DataToWriteInternal", 
@@ -1270,7 +1270,7 @@ JSIL.DeclareNamespace("System.Configuration");
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "DeserializeSection", 
-      JSIL.MethodSignature.Action($asm13.TypeRef("System.Xml.XmlReader"))
+      JSIL.MethodSignature.Action($asm16.TypeRef("System.Xml.XmlReader"))
     );
 
     $.ExternalMethod({Static:false, Public:true }, "get_SectionInformation", 
@@ -1355,7 +1355,7 @@ JSIL.DeclareNamespace("System.Configuration");
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "DeserializeElement", 
-      new JSIL.MethodSignature(null, [$asm13.TypeRef("System.Xml.XmlReader"), $.Boolean])
+      new JSIL.MethodSignature(null, [$asm16.TypeRef("System.Xml.XmlReader"), $.Boolean])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "EnsureStaticPropertyBag", 
@@ -4437,7 +4437,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "OnDeserializeUnrecognizedElement", 
-      new JSIL.MethodSignature($.Boolean, [$.String, $asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature($.Boolean, [$.String, $asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "RealIndexOf", 
@@ -4453,7 +4453,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "SerializeElement", 
-      new JSIL.MethodSignature($.Boolean, [$asm13.TypeRef("System.Xml.XmlWriter"), $.Boolean])
+      new JSIL.MethodSignature($.Boolean, [$asm16.TypeRef("System.Xml.XmlWriter"), $.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "set_AddElementName", 
@@ -4842,24 +4842,24 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
-      new JSIL.MethodSignature(null, [$.String, $asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature(null, [$.String, $asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
       new JSIL.MethodSignature(null, [
           $.String, $asm0D.TypeRef("System.Exception"), 
-          $asm13.TypeRef("System.Xml.XmlNode")
+          $asm16.TypeRef("System.Xml.XmlNode")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
-      new JSIL.MethodSignature(null, [$.String, $asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature(null, [$.String, $asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
       new JSIL.MethodSignature(null, [
           $.String, $asm0D.TypeRef("System.Exception"), 
-          $asm13.TypeRef("System.Xml.XmlReader")
+          $asm16.TypeRef("System.Xml.XmlReader")
         ])
     );
 
@@ -4931,11 +4931,11 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:true , Public:true }, "GetFilename", 
-      new JSIL.MethodSignature($.String, [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($.String, [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:true , Public:true }, "GetFilename", 
-      new JSIL.MethodSignature($.String, [$asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature($.String, [$asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "GetFirstException", 
@@ -4951,11 +4951,11 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:true , Public:true }, "GetLineNumber", 
-      new JSIL.MethodSignature($.Int32, [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($.Int32, [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:true , Public:true }, "GetLineNumber", 
-      new JSIL.MethodSignature($.Int32, [$asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature($.Int32, [$asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "GetObjectData", 
@@ -4971,11 +4971,11 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:true , Public:false}, "GetUnsafeFilename", 
-      new JSIL.MethodSignature($.String, [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($.String, [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "GetUnsafeFilename", 
-      new JSIL.MethodSignature($.String, [$asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature($.String, [$asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "Init", 
@@ -7417,7 +7417,7 @@ JSIL.MakeEnum(
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlAttribute"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlAttribute"), 
       Name: "System.Configuration.ConfigXmlAttribute", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -7429,12 +7429,12 @@ JSIL.MakeEnum(
       new JSIL.MethodSignature(null, [
           $.String, $.Int32, 
           $.String, $.String, 
-          $.String, $asm13.TypeRef("System.Xml.XmlDocument")
+          $.String, $asm16.TypeRef("System.Xml.XmlDocument")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CloneNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$.Boolean])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "System.Configuration.Internal.IConfigErrorInfo.get_Filename", 
@@ -7475,7 +7475,7 @@ JSIL.MakeEnum(
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlCDataSection"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlCDataSection"), 
       Name: "System.Configuration.ConfigXmlCDataSection", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -7486,12 +7486,12 @@ JSIL.MakeEnum(
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
       new JSIL.MethodSignature(null, [
           $.String, $.Int32, 
-          $.String, $asm13.TypeRef("System.Xml.XmlDocument")
+          $.String, $asm16.TypeRef("System.Xml.XmlDocument")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CloneNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$.Boolean])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "System.Configuration.Internal.IConfigErrorInfo.get_Filename", 
@@ -7532,7 +7532,7 @@ JSIL.MakeEnum(
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlComment"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlComment"), 
       Name: "System.Configuration.ConfigXmlComment", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -7543,12 +7543,12 @@ JSIL.MakeEnum(
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
       new JSIL.MethodSignature(null, [
           $.String, $.Int32, 
-          $.String, $asm13.TypeRef("System.Xml.XmlDocument")
+          $.String, $asm16.TypeRef("System.Xml.XmlDocument")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CloneNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$.Boolean])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "System.Configuration.Internal.IConfigErrorInfo.get_Filename", 
@@ -7589,7 +7589,7 @@ JSIL.MakeEnum(
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlElement"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlElement"), 
       Name: "System.Configuration.ConfigXmlElement", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -7601,12 +7601,12 @@ JSIL.MakeEnum(
       new JSIL.MethodSignature(null, [
           $.String, $.Int32, 
           $.String, $.String, 
-          $.String, $asm13.TypeRef("System.Xml.XmlDocument")
+          $.String, $asm16.TypeRef("System.Xml.XmlDocument")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CloneNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$.Boolean])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "System.Configuration.Internal.IConfigErrorInfo.get_Filename", 
@@ -7649,7 +7649,7 @@ JSIL.MakeEnum(
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlTextReader"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlTextReader"), 
       Name: "System.Configuration.ConfigXmlReader", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -7723,7 +7723,7 @@ JSIL.MakeEnum(
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlSignificantWhitespace"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlSignificantWhitespace"), 
       Name: "System.Configuration.ConfigXmlSignificantWhitespace", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -7734,12 +7734,12 @@ JSIL.MakeEnum(
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
       new JSIL.MethodSignature(null, [
           $.String, $.Int32, 
-          $.String, $asm13.TypeRef("System.Xml.XmlDocument")
+          $.String, $asm16.TypeRef("System.Xml.XmlDocument")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CloneNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$.Boolean])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "System.Configuration.Internal.IConfigErrorInfo.get_Filename", 
@@ -7780,7 +7780,7 @@ JSIL.MakeEnum(
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlText"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlText"), 
       Name: "System.Configuration.ConfigXmlText", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -7791,12 +7791,12 @@ JSIL.MakeEnum(
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
       new JSIL.MethodSignature(null, [
           $.String, $.Int32, 
-          $.String, $asm13.TypeRef("System.Xml.XmlDocument")
+          $.String, $asm16.TypeRef("System.Xml.XmlDocument")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CloneNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$.Boolean])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "System.Configuration.Internal.IConfigErrorInfo.get_Filename", 
@@ -7837,7 +7837,7 @@ JSIL.MakeEnum(
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlWhitespace"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlWhitespace"), 
       Name: "System.Configuration.ConfigXmlWhitespace", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -7848,12 +7848,12 @@ JSIL.MakeEnum(
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
       new JSIL.MethodSignature(null, [
           $.String, $.Int32, 
-          $.String, $asm13.TypeRef("System.Xml.XmlDocument")
+          $.String, $asm16.TypeRef("System.Xml.XmlDocument")
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CloneNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$.Boolean])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$.Boolean])
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "System.Configuration.Internal.IConfigErrorInfo.get_Filename", 
@@ -8515,7 +8515,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "DeserializeSection", 
-      JSIL.MethodSignature.Action($asm13.TypeRef("System.Xml.XmlReader"))
+      JSIL.MethodSignature.Action($asm16.TypeRef("System.Xml.XmlReader"))
     );
 
     $.ExternalMethod({Static:true , Public:false}, "EnsureStaticPropertyBag", 
@@ -8704,11 +8704,11 @@ JSIL.DeclareNamespace("System.Configuration.Provider");
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "Decrypt", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "Encrypt", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
 
@@ -8748,7 +8748,7 @@ JSIL.DeclareNamespace("System.Configuration.Provider");
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "Decrypt", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "DecryptText", 
@@ -8756,7 +8756,7 @@ JSIL.DeclareNamespace("System.Configuration.Provider");
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "Encrypt", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "EncryptText", 
@@ -8791,8 +8791,8 @@ JSIL.DeclareNamespace("System.Configuration.Provider");
     );
 
     $.ExternalMethod({Static:true , Public:false}, "TraverseToChild", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [
-          $asm13.TypeRef("System.Xml.XmlNode"), $.String, 
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [
+          $asm16.TypeRef("System.Xml.XmlNode"), $.String, 
           $.Boolean
         ])
     );
@@ -8983,7 +8983,7 @@ JSIL.DeclareNamespace("System.Configuration.Provider");
 
 
   JSIL.MakeType({
-      BaseType: $asm13.TypeRef("System.Xml.XmlDocument"), 
+      BaseType: $asm16.TypeRef("System.Xml.XmlDocument"), 
       Name: "System.Configuration.ErrorInfoXmlDocument", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -8996,41 +8996,41 @@ JSIL.DeclareNamespace("System.Configuration.Provider");
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CreateAttribute", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlAttribute"), [
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlAttribute"), [
           $.String, $.String, 
           $.String
         ])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CreateCDataSection", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlCDataSection"), [$.String])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlCDataSection"), [$.String])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CreateComment", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlComment"), [$.String])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlComment"), [$.String])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CreateElement", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlElement"), [
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlElement"), [
           $.String, $.String, 
           $.String
         ])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "CreateSectionXmlNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$asm10.TypeRef("System.Configuration.ConfigXmlReader")])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$asm10.TypeRef("System.Configuration.ConfigXmlReader")])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CreateSignificantWhitespace", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlSignificantWhitespace"), [$.String])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlSignificantWhitespace"), [$.String])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CreateTextNode", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlText"), [$.String])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlText"), [$.String])
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "CreateWhitespace", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlWhitespace"), [$.String])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlWhitespace"), [$.String])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "get_LineNumber", 
@@ -9055,7 +9055,7 @@ JSIL.DeclareNamespace("System.Configuration.Provider");
     )
       .Overrides($asm10.TypeRef("System.Configuration.Internal.IConfigErrorInfo"), "get_LineNumber");
 
-    $.Field({Static:false, Public:false}, "_reader", $asm13.TypeRef("System.Xml.XmlTextReader"));
+    $.Field({Static:false, Public:false}, "_reader", $asm16.TypeRef("System.Xml.XmlTextReader"));
 
     $.Field({Static:false, Public:false}, "_lineOffset", $.Int32);
 
@@ -9829,7 +9829,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:false, Virtual:true }, "DeserializeSection", 
-      JSIL.MethodSignature.Action($asm13.TypeRef("System.Xml.XmlReader"))
+      JSIL.MethodSignature.Action($asm16.TypeRef("System.Xml.XmlReader"))
     );
 
     $.ExternalMethod({Static:true , Public:false}, "EnsureStaticPropertyBag", 
@@ -11909,7 +11909,7 @@ JSIL.MakeEnum(
     $ = $ib;
 
     $.ExternalMethod({Static:false, Public:false}, ".ctor", 
-      JSIL.MethodSignature.Action($asm13.TypeRef("System.Xml.XmlReader"))
+      JSIL.MethodSignature.Action($asm16.TypeRef("System.Xml.XmlReader"))
     );
 
     $.ExternalMethod({Static:false, Public:false}, "get_FileName", 
@@ -11921,11 +11921,11 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:false}, "GetFilename", 
-      new JSIL.MethodSignature($.String, [$asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature($.String, [$asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "GetLineNumber", 
-      new JSIL.MethodSignature($.Int32, [$asm13.TypeRef("System.Xml.XmlReader")])
+      new JSIL.MethodSignature($.Int32, [$asm16.TypeRef("System.Xml.XmlReader")])
     );
 
     $.Field({Static:false, Public:false}, "_fileName", $.String);
@@ -12608,7 +12608,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "Decrypt", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:false, Public:true }, "DeleteKey", 
@@ -12616,7 +12616,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "Encrypt", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlNode"), [$asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlNode"), [$asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:false, Public:true }, "ExportKey", 
@@ -12667,7 +12667,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:false, Public:false}, "GetSymEncryptionMethod", 
-      JSIL.MethodSignature.Return($asm15.TypeRef("System.Security.Cryptography.Xml.EncryptionMethod"))
+      JSIL.MethodSignature.Return($asm18.TypeRef("System.Security.Cryptography.Xml.EncryptionMethod"))
     );
 
     $.ExternalMethod({Static:false, Public:true }, "ImportKey", 
@@ -12846,7 +12846,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:true , Public:false}, "CheckForLockAttributes", 
-      new JSIL.MethodSignature(null, [$.String, $asm13.TypeRef("System.Xml.XmlNode")])
+      new JSIL.MethodSignature(null, [$.String, $asm16.TypeRef("System.Xml.XmlNode")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "CreateSection", 
@@ -15697,7 +15697,7 @@ JSIL.MakeDelegate("System.Configuration.ValidatorCallback", true, [],
     );
 
     $.ExternalMethod({Static:false, Public:false}, "get_Reader", 
-      JSIL.MethodSignature.Return($asm13.TypeRef("System.Xml.XmlTextReader"))
+      JSIL.MethodSignature.Return($asm16.TypeRef("System.Xml.XmlTextReader"))
     );
 
     $.ExternalMethod({Static:false, Public:false}, "get_SchemaErrors", 
@@ -15709,7 +15709,7 @@ JSIL.MakeDelegate("System.Configuration.ValidatorCallback", true, [],
     );
 
     $.ExternalMethod({Static:true , Public:false}, "GetPositionOffset", 
-      new JSIL.MethodSignature($.Int32, [$asm13.TypeRef("System.Xml.XmlNodeType")])
+      new JSIL.MethodSignature($.Int32, [$asm16.TypeRef("System.Xml.XmlNodeType")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "ReadToNextElement", 
@@ -15794,7 +15794,7 @@ JSIL.MakeDelegate("System.Configuration.ValidatorCallback", true, [],
 
     $.Field({Static:false, Public:false}, "_streamName", $.String);
 
-    $.Field({Static:false, Public:false}, "_reader", $asm13.TypeRef("System.Xml.XmlTextReader"));
+    $.Field({Static:false, Public:false}, "_reader", $asm16.TypeRef("System.Xml.XmlTextReader"));
 
     $.Field({Static:false, Public:false}, "_cachedStringWriter", $asm0D.TypeRef("System.IO.StringWriter"));
 
@@ -15810,7 +15810,7 @@ JSIL.MakeDelegate("System.Configuration.ValidatorCallback", true, [],
 
     $.Property({Static:false, Public:false}, "TrueLinePosition", $.Int32);
 
-    $.Property({Static:false, Public:false}, "Reader", $asm13.TypeRef("System.Xml.XmlTextReader"));
+    $.Property({Static:false, Public:false}, "Reader", $asm16.TypeRef("System.Xml.XmlTextReader"));
 
     $.Property({Static:false, Public:false}, "SchemaErrors", $asm10.TypeRef("System.Configuration.ConfigurationSchemaErrors"));
 
@@ -15872,7 +15872,7 @@ JSIL.MakeDelegate("System.Configuration.ValidatorCallback", true, [],
     );
 
     $.ExternalMethod({Static:false, Public:false}, "AppendAttributeValue", 
-      new JSIL.MethodSignature($.Int32, [$asm13.TypeRef("System.Xml.XmlTextReader")])
+      new JSIL.MethodSignature($.Int32, [$asm16.TypeRef("System.Xml.XmlTextReader")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "AppendCData", 
@@ -16075,7 +16075,7 @@ JSIL.MakeDelegate("System.Configuration.ValidatorCallback", true, [],
 
 
   JSIL.MakeType({
-      BaseType: $asm15.TypeRef("System.Security.Cryptography.Xml.EncryptedXml"), 
+      BaseType: $asm18.TypeRef("System.Security.Cryptography.Xml.EncryptedXml"), 
       Name: "System.Configuration.FipsAwareEncryptedXml", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -16084,15 +16084,15 @@ JSIL.MakeDelegate("System.Configuration.ValidatorCallback", true, [],
     $ = $ib;
 
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
-      JSIL.MethodSignature.Action($asm13.TypeRef("System.Xml.XmlDocument"))
+      JSIL.MethodSignature.Action($asm16.TypeRef("System.Xml.XmlDocument"))
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "GetDecryptionKey", 
-      new JSIL.MethodSignature($asm0D.TypeRef("System.Security.Cryptography.SymmetricAlgorithm"), [$asm15.TypeRef("System.Security.Cryptography.Xml.EncryptedData"), $.String])
+      new JSIL.MethodSignature($asm0D.TypeRef("System.Security.Cryptography.SymmetricAlgorithm"), [$asm18.TypeRef("System.Security.Cryptography.Xml.EncryptedData"), $.String])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "IsAesDetected", 
-      new JSIL.MethodSignature($.Boolean, [$asm15.TypeRef("System.Security.Cryptography.Xml.EncryptedData"), $.String])
+      new JSIL.MethodSignature($.Boolean, [$asm18.TypeRef("System.Security.Cryptography.Xml.EncryptedData"), $.String])
     );
 
 

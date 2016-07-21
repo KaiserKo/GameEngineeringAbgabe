@@ -17842,7 +17842,7 @@ JSIL.MakeEnum(
     );
 
     $.ExternalMethod({Static:true , Public:false}, "GetManifestXml", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlDocument"), [$asm0D.TypeRef("System.ActivationContext"), $asm11.TypeRef("System.Security.ManifestKinds")])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlDocument"), [$asm0D.TypeRef("System.ActivationContext"), $asm11.TypeRef("System.Security.ManifestKinds")])
     )
       .Attribute($asm0D.TypeRef("System.Security.SecuritySafeCriticalAttribute"));
 
@@ -18130,8 +18130,8 @@ JSIL.MakeEnum(
 
     $.ExternalMethod({Static:true , Public:false}, "BuildEccPublicBlob", 
       new JSIL.MethodSignature($jsilcore.TypeRef("System.Array", [$.Byte]), [
-          $.String, $asm12.TypeRef("System.Numerics.BigInteger"), 
-          $asm12.TypeRef("System.Numerics.BigInteger")
+          $.String, $asm14.TypeRef("System.Numerics.BigInteger"), 
+          $asm14.TypeRef("System.Numerics.BigInteger")
         ])
     );
 
@@ -18404,8 +18404,8 @@ JSIL.MakeEnum(
 
     $.ExternalMethod({Static:true , Public:false}, "UnpackEccPublicBlob", 
       new JSIL.MethodSignature(null, [
-          $jsilcore.TypeRef("System.Array", [$.Byte]), $jsilcore.TypeRef("JSIL.Reference", [$asm12.TypeRef("System.Numerics.BigInteger")]), 
-          $jsilcore.TypeRef("JSIL.Reference", [$asm12.TypeRef("System.Numerics.BigInteger")])
+          $jsilcore.TypeRef("System.Array", [$.Byte]), $jsilcore.TypeRef("JSIL.Reference", [$asm14.TypeRef("System.Numerics.BigInteger")]), 
+          $jsilcore.TypeRef("JSIL.Reference", [$asm14.TypeRef("System.Numerics.BigInteger")])
         ])
     );
 
@@ -19205,13 +19205,13 @@ JSIL.MakeDelegate("System.Security.Cryptography.NCryptNative+NCryptSignatureVeri
     );
 
     $.ExternalMethod({Static:true , Public:false}, "ReadAlgorithm", 
-      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.CngAlgorithm"), [$asm13.TypeRef("System.Xml.XPath.XPathNavigator")])
+      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.CngAlgorithm"), [$asm16.TypeRef("System.Xml.XPath.XPathNavigator")])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "ReadPublicKey", 
       new JSIL.MethodSignature(null, [
-          $asm13.TypeRef("System.Xml.XPath.XPathNavigator"), $jsilcore.TypeRef("JSIL.Reference", [$asm12.TypeRef("System.Numerics.BigInteger")]), 
-          $jsilcore.TypeRef("JSIL.Reference", [$asm12.TypeRef("System.Numerics.BigInteger")])
+          $asm16.TypeRef("System.Xml.XPath.XPathNavigator"), $jsilcore.TypeRef("JSIL.Reference", [$asm14.TypeRef("System.Numerics.BigInteger")]), 
+          $jsilcore.TypeRef("JSIL.Reference", [$asm14.TypeRef("System.Numerics.BigInteger")])
         ])
     );
 
@@ -19220,11 +19220,11 @@ JSIL.MakeDelegate("System.Security.Cryptography.NCryptNative+NCryptSignatureVeri
     );
 
     $.ExternalMethod({Static:true , Public:false}, "WriteDomainParameters", 
-      new JSIL.MethodSignature(null, [$asm13.TypeRef("System.Xml.XmlWriter"), $asm11.TypeRef("System.Security.Cryptography.CngKey")])
+      new JSIL.MethodSignature(null, [$asm16.TypeRef("System.Xml.XmlWriter"), $asm11.TypeRef("System.Security.Cryptography.CngKey")])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "WritePublicKeyValue", 
-      new JSIL.MethodSignature(null, [$asm13.TypeRef("System.Xml.XmlWriter"), $asm11.TypeRef("System.Security.Cryptography.CngKey")])
+      new JSIL.MethodSignature(null, [$asm16.TypeRef("System.Xml.XmlWriter"), $asm11.TypeRef("System.Security.Cryptography.CngKey")])
     );
 
     $.Constant({Static:true , Public:false}, "DomainParametersRoot", $.String, "DomainParameters");
@@ -19919,7 +19919,7 @@ JSIL.DeclareNamespace("System.Security.Cryptography.Xml");
 
 
   JSIL.MakeType({
-      BaseType: $asm15.TypeRef("System.Security.Cryptography.Xml.SignedXml"), 
+      BaseType: $asm18.TypeRef("System.Security.Cryptography.Xml.SignedXml"), 
       Name: "System.Security.Cryptography.Xml.ManifestSignedXml", 
       IsPublic: false, 
       IsReferenceType: true, 
@@ -19928,7 +19928,7 @@ JSIL.DeclareNamespace("System.Security.Cryptography.Xml");
     $ = $ib;
 
     $.ExternalMethod({Static:false, Public:true }, ".ctor", 
-      new JSIL.MethodSignature(null, [$asm13.TypeRef("System.Xml.XmlDocument"), $asm11.TypeRef("System.Security.ManifestKinds")])
+      new JSIL.MethodSignature(null, [$asm16.TypeRef("System.Xml.XmlDocument"), $asm11.TypeRef("System.Security.ManifestKinds")])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "BackwardHexToBytes", 
@@ -19937,7 +19937,7 @@ JSIL.DeclareNamespace("System.Security.Cryptography.Xml");
 
     $.ExternalMethod({Static:false, Public:false}, "BuildSignatureChain", 
       new JSIL.MethodSignature($asm0F.TypeRef("System.Security.Cryptography.X509Certificates.X509Chain"), [
-          $asm11.TypeRef("System.Security.Cryptography.X509Certificates.X509Native+AXL_AUTHENTICODE_SIGNER_INFO"), $asm13.TypeRef("System.Xml.XmlElement"), 
+          $asm11.TypeRef("System.Security.Cryptography.X509Certificates.X509Native+AXL_AUTHENTICODE_SIGNER_INFO"), $asm16.TypeRef("System.Xml.XmlElement"), 
           $asm0F.TypeRef("System.Security.Cryptography.X509Certificates.X509RevocationFlag"), $asm0F.TypeRef("System.Security.Cryptography.X509Certificates.X509RevocationMode")
         ])
     )
@@ -19957,11 +19957,11 @@ JSIL.DeclareNamespace("System.Security.Cryptography.Xml");
     );
 
     $.ExternalMethod({Static:false, Public:true , Virtual:true }, "GetIdElement", 
-      new JSIL.MethodSignature($asm13.TypeRef("System.Xml.XmlElement"), [$asm13.TypeRef("System.Xml.XmlDocument"), $.String])
+      new JSIL.MethodSignature($asm16.TypeRef("System.Xml.XmlElement"), [$asm16.TypeRef("System.Xml.XmlDocument"), $.String])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "GetTimestampInformation", 
-      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.X509Certificates.TimestampInformation"), [$asm11.TypeRef("System.Security.Cryptography.X509Certificates.X509Native+AXL_AUTHENTICODE_TIMESTAMPER_INFO"), $asm13.TypeRef("System.Xml.XmlElement")])
+      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.X509Certificates.TimestampInformation"), [$asm11.TypeRef("System.Security.Cryptography.X509Certificates.X509Native+AXL_AUTHENTICODE_TIMESTAMPER_INFO"), $asm16.TypeRef("System.Xml.XmlElement")])
     )
       .Attribute($asm0D.TypeRef("System.Security.SecurityCriticalAttribute"));
 
@@ -19978,7 +19978,7 @@ JSIL.DeclareNamespace("System.Security.Cryptography.Xml");
     );
 
     $.ExternalMethod({Static:false, Public:false}, "VerifyAuthenticodeExpectedHash", 
-      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.SignatureVerificationResult"), [$asm13.TypeRef("System.Xml.XmlElement")])
+      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.SignatureVerificationResult"), [$asm16.TypeRef("System.Xml.XmlElement")])
     );
 
     $.ExternalMethod({Static:false, Public:false}, "VerifyAuthenticodePublisher", 
@@ -19988,14 +19988,14 @@ JSIL.DeclareNamespace("System.Security.Cryptography.Xml");
 
     $.ExternalMethod({Static:false, Public:false}, "VerifyAuthenticodeSignature", 
       new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.X509Certificates.AuthenticodeSignatureInformation"), [
-          $asm13.TypeRef("System.Xml.XmlElement"), $asm0F.TypeRef("System.Security.Cryptography.X509Certificates.X509RevocationFlag"), 
+          $asm16.TypeRef("System.Xml.XmlElement"), $asm0F.TypeRef("System.Security.Cryptography.X509Certificates.X509RevocationFlag"), 
           $asm0F.TypeRef("System.Security.Cryptography.X509Certificates.X509RevocationMode")
         ])
     )
       .Attribute($asm0D.TypeRef("System.Security.SecuritySafeCriticalAttribute"));
 
     $.ExternalMethod({Static:false, Public:false}, "VerifyAuthenticodeSignatureIdentity", 
-      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.SignatureVerificationResult"), [$asm13.TypeRef("System.Xml.XmlElement")])
+      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.SignatureVerificationResult"), [$asm16.TypeRef("System.Xml.XmlElement")])
     );
 
     $.ExternalMethod({Static:false, Public:true }, "VerifySignature", 
@@ -20003,22 +20003,22 @@ JSIL.DeclareNamespace("System.Security.Cryptography.Xml");
     );
 
     $.ExternalMethod({Static:false, Public:false}, "VerifyStrongNameSignature", 
-      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.StrongNameSignatureInformation"), [$asm13.TypeRef("System.Xml.XmlElement")])
+      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.StrongNameSignatureInformation"), [$asm16.TypeRef("System.Xml.XmlElement")])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "VerifyStrongNameSignatureId", 
-      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.SignatureVerificationResult"), [$asm13.TypeRef("System.Xml.XmlElement")])
+      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.SignatureVerificationResult"), [$asm16.TypeRef("System.Xml.XmlElement")])
     );
 
     $.ExternalMethod({Static:true , Public:false}, "VerifyStrongNameSignatureTransforms", 
-      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.SignatureVerificationResult"), [$asm15.TypeRef("System.Security.Cryptography.Xml.SignedInfo")])
+      new JSIL.MethodSignature($asm11.TypeRef("System.Security.Cryptography.SignatureVerificationResult"), [$asm18.TypeRef("System.Security.Cryptography.Xml.SignedInfo")])
     );
 
     $.Field({Static:false, Public:false}, "m_manifest", $asm11.TypeRef("System.Security.ManifestKinds"));
 
-    $.Field({Static:false, Public:false}, "m_manifestXml", $asm13.TypeRef("System.Xml.XmlDocument"));
+    $.Field({Static:false, Public:false}, "m_manifestXml", $asm16.TypeRef("System.Xml.XmlDocument"));
 
-    $.Field({Static:false, Public:false}, "m_namespaceManager", $asm13.TypeRef("System.Xml.XmlNamespaceManager"));
+    $.Field({Static:false, Public:false}, "m_namespaceManager", $asm16.TypeRef("System.Xml.XmlNamespaceManager"));
 
 
     return function (newThisType) { $thisType = newThisType; }; 

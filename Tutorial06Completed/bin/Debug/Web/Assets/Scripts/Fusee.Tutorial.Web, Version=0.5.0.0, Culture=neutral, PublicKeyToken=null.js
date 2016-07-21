@@ -173,9 +173,9 @@ JSIL.DeclareNamespace("Fusee.Tutorial.Web");
     return ($T0A = JSIL.Memoize($asm00.Fusee.Base.Common.FileMode)) ();
   };
   var $S00 = function () {
-    return ($S00 = JSIL.Memoize(new JSIL.MethodSignature($asm14.TypeRef("System.Object"), [
-        $asm14.TypeRef("System.IO.Stream"), $asm14.TypeRef("System.Object"), 
-        $asm14.TypeRef("System.Type")
+    return ($S00 = JSIL.Memoize(new JSIL.MethodSignature($asm17.TypeRef("System.Object"), [
+        $asm17.TypeRef("System.IO.Stream"), $asm17.TypeRef("System.Object"), 
+        $asm17.TypeRef("System.Type")
       ]))) ();
   };
 
