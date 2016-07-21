@@ -183,7 +183,7 @@ namespace Fusee.Tutorial.Core
             animationStatus = true;
 
             // Load the scene
-            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V10.fus");
+            _scene = AssetStorage.Get<SceneContainer>("TD-Map-2_V11.fus");
             _tower = AssetStorage.Get<SceneContainer>("TowerRed.fus");
             towerBullet = AssetStorage.Get<SceneContainer>("Sphere.fus");
 
@@ -463,7 +463,7 @@ namespace Fusee.Tutorial.Core
             #endif
             #endregion
             // Set the clear color for the backbuffer
-            RC.ClearColor = new float4(1, 1, 1, 1);
+            RC.ClearColor = new float4(0.05f, 0.74f, 1.0f, 1.0f);
         }
 
         // RenderAFrame is called once a frame

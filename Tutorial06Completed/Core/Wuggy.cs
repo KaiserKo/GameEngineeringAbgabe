@@ -66,7 +66,7 @@ namespace Fusee.Tutorial.Core
             AnimationManager animationManager = new AnimationManager();
 
             animation = new Animation(0);
-            channelList = animationManager.getAnimation(animationNumber);
+            channelList = animationManager.getAnimation(animationNumber, this);
 
             animation.AddAnimation(channelList.ElementAt(0), model.Children[0].GetTransform(), "Translation");
             animation.AddAnimation(channelList.ElementAt(1), model.Children[0].GetTransform(), "Rotation");
@@ -77,7 +77,7 @@ namespace Fusee.Tutorial.Core
             AnimationManager animationManager = new AnimationManager();
 
             animation = new Animation(0);
-            channelList = animationManager.getRandomAnimation();
+            channelList = animationManager.getRandomAnimation(this);
 
             animation.AddAnimation(channelList.ElementAt(0), model.Children[0].GetTransform(), "Translation");
             animation.AddAnimation(channelList.ElementAt(1), model.Children[0].GetTransform(), "Rotation");

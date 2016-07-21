@@ -31,9 +31,9 @@ namespace Fusee.Tutorial.Core
 
         private void spawnWuggy(Object state)
         {
-            if (newWave && spawnedWuggys < 10) {
+            if (newWave && spawnedWuggys < 1) {
                 spawnedWuggys += 1;
-                Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.9f, 0.2f), 0, 1, 100));
+                Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.9f, 0.2f), 0, 1, 100, 4));
             }
             else
             {
