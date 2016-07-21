@@ -538,6 +538,48 @@ namespace Fusee.Tutorial.Core
                     rotationChannel.AddKeyframe(new Keyframe<float3>(27.0f, getWuggyRot(wuggy)));
                     rotationChannel.AddKeyframe(new Keyframe<float3>(27.5f, turnLeft(wuggy)));
 
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(37.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(38.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(41.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(41.5f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(43.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(44.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(48.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(49.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(51.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(51.5f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(59.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(59.5f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(74.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(75.0f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(78.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(79.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(92.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(93.0f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(96.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(97.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(98.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(98.5f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(106.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(106.5f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(109.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(110.0f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(113.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(114.0f, turnRight(wuggy)));
+
                     rotationChannel.AddKeyframe(new Keyframe<float3>(124.0f, getWuggyRot(wuggy)));
 
                     animationList.Add(rotationChannel);
@@ -592,8 +634,45 @@ namespace Fusee.Tutorial.Core
                     #endregion
 
                     #region Rotation
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(0, rotation["osten"]));
-                    rotationChannel.AddKeyframe(new Keyframe<float3>(13, rotation["osten"]));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(0.0f, getWuggyRot(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(8.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(9.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(14.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(15.0f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(25.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(26.0f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(30.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(31.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(33.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(33.5f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(46.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(47.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(59.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(59.5f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(60.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(61.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(70.0f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(70.5f, turnLeft(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(71.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(72.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(81.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(82.0f, turnRight(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(85.5f, getWuggyRot(wuggy)));
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(86.0f, getWuggyRot(wuggy)));
+
+                    rotationChannel.AddKeyframe(new Keyframe<float3>(96.0f, getWuggyRot(wuggy)));
 
                     animationList.Add(rotationChannel);
                     #endregion

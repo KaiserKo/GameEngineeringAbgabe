@@ -28,7 +28,7 @@ namespace Fusee.Tutorial.Core
         public void spawnWave()
         {
             newWave = true;
-            timer = new Timer(spawnWuggy, null, 0, 1000);
+            timer = new Timer(spawnWuggy, null, 0, 2000);
         }
 
         private void spawnWuggy(Object state)
@@ -67,7 +67,7 @@ namespace Fusee.Tutorial.Core
                 if (newWave && spawnedWuggys < maxWuggys)
                 {
                     spawnedWuggys += 1;
-                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.9f, 0.2f), 0, 1, 100, 4));
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.9f, 0.2f), 0, 1, 100));
                 }
                 else
                 {
