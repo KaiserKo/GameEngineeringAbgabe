@@ -63,6 +63,21 @@ namespace Fusee.Tutorial.Core
             SetUpAnimations();
         }
 
+        public bool takeDamage(int damage)
+        {
+            health -= damage;
+
+            if(health <= 0)
+            {
+                Tutorial.ListWuggys.Remove(this);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void SetUpAnimations()
         {
             AnimationManager animationManager = new AnimationManager(speed);
