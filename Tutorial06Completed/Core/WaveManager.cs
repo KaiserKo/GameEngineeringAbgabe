@@ -129,7 +129,7 @@ namespace Fusee.Tutorial.Core
                 spawnedBossWuggys = 0;
                 waveCount++;
             }
-
+            
         }
 
         private void spawnWuggy(int _wuggyType)
