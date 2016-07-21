@@ -71,7 +71,7 @@
       <HintPath>$(FuseeRoot)bin\$(Configuration)\Libraries\Fusee.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Fusee.SerializationSerializer">
-      <HintPath>..\..\..\..\GitHub\Fusee\bin\Debug\Libraries\Fusee.SerializationSerializer.dll</HintPath>
+      <HintPath>..\..\..\Fusee\bin\Debug\Libraries\Fusee.SerializationSerializer.dll</HintPath>
     </Reference>
     <Reference Include="Fusee.Xene">
       <SpecificVersion>False</SpecificVersion>
@@ -86,16 +86,18 @@
       <HintPath>$(FuseeRoot)bin\$(Configuration)\Libraries\Fusee.Engine.Core.dll</HintPath>
     </Reference>
     <Reference Include="Fusee.Xirkit">
-      <HintPath>..\..\..\..\GitHub\Fusee\bin\Debug\Libraries\Fusee.Xirkit.dll</HintPath>
+      <HintPath>..\..\..\Fusee\bin\Debug\Libraries\Fusee.Xirkit.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net">
-      <HintPath>..\..\..\..\GitHub\Fusee\bin\Debug\Libraries\protobuf-net.dll</HintPath>
+      <HintPath>..\..\..\Fusee\bin\Debug\Libraries\protobuf-net.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutFuseeAssets.txt" />
     <Content Include="Assets\Leaves.jpg">

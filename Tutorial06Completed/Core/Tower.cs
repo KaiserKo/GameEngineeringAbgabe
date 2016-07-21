@@ -115,14 +115,15 @@ namespace Fusee.Tutorial.Core
       // TODO: Schuss - Kugelanimation  
         public void moveShot()
         {
-
             float3 wuggyPos = wuggy.Children.First().GetTransform().Translation;
             float3 bulletPos = bullet.Children.First().GetTransform().Translation;
             float3 targetDist = wuggyPos - bulletPos;
 
             float3 absTargetDist = new float3((float)Abs(targetDist.x), (float)Abs(targetDist.y), (float)Abs(targetDist.z));
 
-            if (hitTarget(absTargetDist))
+            float wuggyScale = wuggy.Children.First().GetTransform().Scale.x * 10.0f;
+
+            if (hitTarget(absTargetDist, wuggyScale))
             {
                 tower.removeShots.Add(this);
             }
@@ -132,28 +133,31 @@ namespace Fusee.Tutorial.Core
                 bullet.Children.First().GetTransform().Rotation.y = bulletYaw;
 
                 float vx = bulletSpeed * (90 - Abs(bullet.Children.First().GetTransform().Rotation.y)) / 90;
-                float vy;
+                float vz;
 
                 if (bullet.Children.First().GetTransform().Rotation.y < 0)
                 {
-                    vy = -bulletSpeed + Abs(vx);
+                    vz = -bulletSpeed + Abs(vx);
                 }
                 else
                 {
-                    vy = bulletSpeed - Abs(vx);
+                    vz = bulletSpeed - Abs(vx);
                 }
 
                 bullet.Children.First().GetTransform().Translation.x += vx;
-                bullet.Children.First().GetTransform().Translation.z += vy;
-                bullet.Children.First().GetTransform().Translation.y = wuggy.Children.First().GetTransform().Translation.y;
+                bullet.Children.First().GetTransform().Translation.z += vz;
+
+                float3 vy = float3.Lerp(bulletPos, new float3(wuggyPos.x, wuggyScale * 10.0f, wuggyPos.z), 0.3f);
+
+                bullet.Children.First().GetTransform().Translation.y = vy.y;
             }
         }
 
-        private bool hitTarget(float3 dist)
+        private bool hitTarget(float3 dist, float scale)
         {
             bool val = false;
 
-            if (dist.x < 250 && dist.y < 250 && dist.z < 250)
+            if (dist.x < scale * 20.0f && dist.y < scale * 20.0f && dist.z < scale * 20.0f)
             {
                 val = true;
             }
