@@ -55,6 +55,9 @@ namespace Fusee.Tutorial.Core
                 case 5:
                 maxWuggys = 30;
                 break;
+                default:
+                maxWuggys = 5;
+                break;
             }
             
             if (newWave && spawnedWuggys < maxWuggys) {
