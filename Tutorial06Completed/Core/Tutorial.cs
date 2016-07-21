@@ -522,8 +522,8 @@ namespace Fusee.Tutorial.Core
             {
                 if (_keys)
                 {
-                    _angleVelHorz = -RotationSpeed * Keyboard.LeftRightAxis * 0.002f;
-                    _angleVelVert = -RotationSpeed * Keyboard.UpDownAxis * 0.002f;
+                    _angleVelHorz = -RotationSpeed * Keyboard.LeftRightAxis * 0.004f;
+                    _angleVelVert = -RotationSpeed * Keyboard.UpDownAxis * 0.004f;
                 }
                 else
                 {
@@ -586,23 +586,23 @@ namespace Fusee.Tutorial.Core
 
             if (Keyboard.GetKey(KeyCodes.W))
             {
-                camPosition.z += 1.0f * (float)Sin(_angleHorz - (PI / 2));
-                camPosition.x += 1.0f * (float)Cos(_angleHorz - (PI / 2));
+                camPosition.z += 2.0f * (float)Sin(_angleHorz - (PI / 2));
+                camPosition.x += 2.0f * (float)Cos(_angleHorz - (PI / 2));
             }
             if (Keyboard.GetKey(KeyCodes.S))
             {
-                camPosition.z += 1.0f * (float)Sin(_angleHorz + (PI / 2));
-                camPosition.x += 1.0f * (float)Cos(_angleHorz + (PI / 2));
+                camPosition.z += 2.0f * (float)Sin(_angleHorz + (PI / 2));
+                camPosition.x += 2.0f * (float)Cos(_angleHorz + (PI / 2));
             }
             if (Keyboard.GetKey(KeyCodes.A))
             {
-                camPosition.z += 1.0f * (float)Sin(_angleHorz);
-                camPosition.x += 1.0f * (float)Cos(_angleHorz);
+                camPosition.z += 2.0f * (float)Sin(_angleHorz);
+                camPosition.x += 2.0f * (float)Cos(_angleHorz);
             }
             if (Keyboard.GetKey(KeyCodes.D))
             {
-                camPosition.z -= 1.0f * (float)Sin(_angleHorz);
-                camPosition.x -= 1.0f * (float)Cos(_angleHorz);
+                camPosition.z -= 2.0f * (float)Sin(_angleHorz);
+                camPosition.x -= 2.0f * (float)Cos(_angleHorz);
             }
 
             _renderer.View = mtxCam * mtxTrans * _sceneScale;
