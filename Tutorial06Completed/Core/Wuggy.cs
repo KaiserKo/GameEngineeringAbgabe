@@ -12,23 +12,25 @@ namespace Fusee.Tutorial.Core
     {
         private SceneContainer model;
         private float3 position;
-        private int speed;
+        private float speed;
         private int health;
         private float3 color;
         private int size;
+        private int damage;
         private int money;
         private int animationNumber;
 
         private Animation animation;
         public List<Channel<float3>> channelList;
 
-        public Wuggy(SceneContainer _model, float3 _position, int _size, float3 _color, int _speed, int _health, int _money)
+        public Wuggy(SceneContainer _model, float3 _position, int _size, float3 _color, int _damage, float _speed, int _health, int _money)
         {
 
             model = _model;
             position = _position;
             size = _size;
             color = _color;
+            damage = _damage;
             speed = _speed;
             health = _health;
             money = _money;
@@ -63,7 +65,7 @@ namespace Fusee.Tutorial.Core
 
         public void SetUpAnimations()
         {
-            AnimationManager animationManager = new AnimationManager();
+            AnimationManager animationManager = new AnimationManager(speed);
 
             animation = new Animation(0);
             channelList = animationManager.getAnimation(animationNumber, this);
@@ -74,7 +76,7 @@ namespace Fusee.Tutorial.Core
 
         public void SetUpRandomAnimations()
         {
-            AnimationManager animationManager = new AnimationManager();
+            AnimationManager animationManager = new AnimationManager(speed);
 
             animation = new Animation(0);
             channelList = animationManager.getRandomAnimation(this);

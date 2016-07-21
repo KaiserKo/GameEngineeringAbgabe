@@ -845,7 +845,10 @@ namespace Fusee.Tutorial.Core
 
         void startButtonClicked(GUIButton sender, GUIButtonEventArgs mea)
         {
-            wManager.spawnWave();
+            if (wManager.isWaveActive == false)
+            {
+                wManager.spawnWave();
+            }
         }
 
         void updateStatusPanel()

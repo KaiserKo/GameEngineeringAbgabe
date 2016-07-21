@@ -16,7 +16,7 @@ namespace Fusee.Tutorial.Core
         private SceneContainer _wuggy;
 
         private Timer timer;
-        public bool newWave = false;
+        public bool isWaveActive = false;
         private int spawnedWuggys = 0;
 
         public WaveManager()
@@ -27,56 +27,97 @@ namespace Fusee.Tutorial.Core
 
         public void spawnWave()
         {
-            newWave = true;
-            timer = new Timer(spawnWuggy, null, 0, 2000);
+            isWaveActive = true;
+            timer = new Timer(spawnWuggys, null, 0, 2000);
         }
 
-        private void spawnWuggy(Object state)
+        private void spawnWuggys(Object state)
         {
-            int maxWuggys;
+            int maxNormalWuggys = 0;
+            int maxSpeedWuggys = 0;
+            int maxTankWuggys = 0;
+            int maxSpeedTankWuggys = 0;
+            int maxBossWuggys = 0;
+
 
             if (waveCount > 5)
             {
-                maxWuggys = 50;
+                maxNormalWuggys = 50;
             }
             else
             {
                 switch (waveCount)
                 {
                     case 1:
-                        maxWuggys = 5;
+                        maxNormalWuggys = 5;
                         break;
                     case 2:
-                        maxWuggys = 10;
+                        maxNormalWuggys = 8;
+                        maxSpeedWuggys = 2;
                         break;
                     case 3:
-                        maxWuggys = 15;
+                        maxNormalWuggys = 10;
+                        maxSpeedWuggys = 4;
+                        maxTankWuggys = 1;
                         break;
                     case 4:
-                        maxWuggys = 20;
+                        maxNormalWuggys = 10;
+                        maxSpeedWuggys = 6;
+                        maxTankWuggys = 3;
+                        maxSpeedTankWuggys = 1;
                         break;
                     case 5:
-                        maxWuggys = 30;
+                        maxNormalWuggys = 15;
+                        maxSpeedWuggys = 8;
+                        maxTankWuggys = 4;
+                        maxSpeedTankWuggys = 2;
+                        maxBossWuggys = 1;
                         break;
 
                     default:
-                        maxWuggys = 1;
+                        maxNormalWuggys = 5;
                         break;
                 }
 
-                if (newWave && spawnedWuggys < maxWuggys)
+                if (spawnedWuggys < maxNormalWuggys)
                 {
                     spawnedWuggys += 1;
-                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.9f, 0.2f), 0, 1, 100));
+                    spawnWuggy(1);
                 }
                 else
                 {
                     timer.Dispose();
                     spawnedWuggys = 0;
                     waveCount++;
-                    newWave = false;
+                    isWaveActive = false;
                 }
 
+            }
+        }
+
+        private void spawnWuggy(int _wuggyType)
+        {
+            switch (_wuggyType)
+            {
+                case 1:
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.2f, 0.9f), 1, 1.5f, 30, 20));
+                    break;
+                case 2:
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.9f, 0.2f), 1, 3.0f, 30, 30));
+                    break;
+                case 3:
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 6, new float3(0.9f, 0.2f, 0.2f), 2, 1.5f, 50, 40));
+                    break;
+                case 4:
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 6, new float3(0.2f, 0.9f, 0.9f), 2, 3.0f, 50, 60));
+                    break;
+                case 5:
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 8, new float3(0.2f, 0.2f, 0.9f), 4, 1.0f, 100, 100));
+                    break;
+
+                default:
+                    Tutorial.ListWuggys.Add(new Wuggy(Tutorial.DeepCopy(_wuggy), new float3(0, 0, 750), 4, new float3(0.2f, 0.2f, 0.9f), 1, 1.5f, 30, 20));
+                    break;
             }
         }
     }
