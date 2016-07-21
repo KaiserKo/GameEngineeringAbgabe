@@ -43,7 +43,7 @@ namespace Fusee.Tutorial.Core
             SetUpRandomAnimations();
         }
 
-        public Wuggy(SceneContainer _model, float3 _position, int _size, float3 _color, int _speed, int _health, int _money, int _animationNumber)
+        public Wuggy(SceneContainer _model, float3 _position, int _size, float3 _color, int _damage, float _speed, int _health, int _money, int _animationNumber)
         {
 
             model = _model;
@@ -53,6 +53,7 @@ namespace Fusee.Tutorial.Core
             speed = _speed;
             health = _health;
             money = _money;
+            damage = _damage;
             animationNumber = _animationNumber;
 
             model.Children.First().GetTransform().Translation = position;
@@ -69,7 +70,6 @@ namespace Fusee.Tutorial.Core
 
             if(health <= 0)
             {
-                Tutorial.ListWuggys.Remove(this);
                 return true;
             }
             else
@@ -103,7 +103,17 @@ namespace Fusee.Tutorial.Core
         public SceneContainer Model { get { return model; } set { model = value; } }
         public Animation Animation { get { return animation; } set { animation = value; } }
 
+        public int Size
+        {
+            get
+            {
+                return size;
+            }
 
-
+            set
+            {
+                size = value;
+            }
+        }
     }
 }

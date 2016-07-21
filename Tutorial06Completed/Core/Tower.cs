@@ -2,8 +2,10 @@
 using Fusee.Math.Core;
 using Fusee.Serialization;
 using Fusee.Xene;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using static System.Math;
 
 namespace Fusee.Tutorial.Core
@@ -12,7 +14,7 @@ namespace Fusee.Tutorial.Core
     {
         private SceneContainer model;
         private float3 position;
-        private float speed;
+        private int speed;
         private float range;
         private int damage;
         public float3 cylinderPos;
@@ -20,9 +22,10 @@ namespace Fusee.Tutorial.Core
         public List<Shot> removeShots;
         private int inxShotRepeating;
         public bool towerIsShoting;
-        public SceneContainer nextWuggy;
+        public Wuggy nextWuggy;
+        private Timer timer;
 
-        public Tower(SceneContainer _model, float3 _position, float _speed, float _range, int _damage) {
+        public Tower(SceneContainer _model, float3 _position, int _speed, float _range, int _damage) {
             position = _position;
             speed = _speed;
             range = _range;
@@ -39,17 +42,17 @@ namespace Fusee.Tutorial.Core
             towerIsShoting = false;
         }
 
-        public SceneContainer getClosestWuggy()
+        public Wuggy getClosestWuggy()
         {
             float minDist = float.MaxValue;
-            SceneContainer ret = null;
+            Wuggy ret = null;
             foreach (var target in Tutorial.ListWuggys)
             {
                 var xf = target.Model.Children[0].GetTransform();
                 float dist = (position - xf.Translation).Length;
                 if (dist < minDist && dist < range)
                 {
-                    ret = target.Model;
+                    ret = target;
                     minDist = dist;
                 }
             }
@@ -60,22 +63,21 @@ namespace Fusee.Tutorial.Core
         {
             if (check)
             {
-                inxShotRepeating = Tutorial.InvokeRepeating(createShot, speed);
+                timer = new Timer(createShot, null, 0, speed);
             }
-            else if (!check && Tutorial.RepeatList.ElementAtOrDefault(inxShotRepeating) != null)
+            else if (!check && timer != null)
             {
-                Tutorial.StopRepeating(inxShotRepeating);
+                timer.Dispose();
             }
         }
 
-        public void createShot()
+        public void createShot(Object state)
         {
             towerBulletList.Add(new Shot(this, nextWuggy));
         }
 
         public void removeTowerShot()
         {
-            //towerBulletList.Remove(s);
             List<Shot> temp = new List<Shot>(removeShots);
             foreach (Shot s in temp)
             {
@@ -85,6 +87,19 @@ namespace Fusee.Tutorial.Core
         }
 
         public SceneContainer Model { get { return model; } set { model = value; }}
+
+        public int Damage
+        {
+            get
+            {
+                return damage;
+            }
+
+            set
+            {
+                damage = value;
+            }
+        }
     }
 
     /*************
@@ -93,11 +108,11 @@ namespace Fusee.Tutorial.Core
     class Shot
     {
         public SceneContainer bullet;
-        public SceneContainer wuggy;
+        public Wuggy wuggy;
         public Tower tower;
         public float bulletSpeed;
 
-        public Shot(Tower _tower, SceneContainer _wuggy)
+        public Shot(Tower _tower, Wuggy _wuggy)
         {
             tower = _tower;
             wuggy = _wuggy;
@@ -115,13 +130,13 @@ namespace Fusee.Tutorial.Core
       // TODO: Schuss - Kugelanimation  
         public void moveShot()
         {
-            float3 wuggyPos = wuggy.Children.First().GetTransform().Translation;
+            float3 wuggyPos = wuggy.Model.Children.First().GetTransform().Translation;
             float3 bulletPos = bullet.Children.First().GetTransform().Translation;
             float3 targetDist = wuggyPos - bulletPos;
 
             float3 absTargetDist = new float3((float)Abs(targetDist.x), (float)Abs(targetDist.y), (float)Abs(targetDist.z));
 
-            float wuggyScale = wuggy.Children.First().GetTransform().Scale.x * 10.0f;
+            float wuggyScale = wuggy.Size;
 
             if (hitTarget(absTargetDist, wuggyScale))
             {
@@ -160,6 +175,20 @@ namespace Fusee.Tutorial.Core
             if (dist.x < scale * 20.0f && dist.y < scale * 20.0f && dist.z < scale * 20.0f)
             {
                 val = true;
+                bool killed = wuggy.takeDamage(tower.Damage);
+
+                if (killed)
+                {
+                    List<Shot> tempList = tower.towerBulletList;
+                    foreach (Shot s in tempList)
+                    {
+                        if (s.wuggy == wuggy)
+                        {
+                            tower.removeShots.Add(s);
+                            Tutorial.ListWuggys.Remove(wuggy);
+                        }
+                    }
+                }
             }
 
             return val;

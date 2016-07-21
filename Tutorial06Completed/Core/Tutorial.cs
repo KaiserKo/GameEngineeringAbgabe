@@ -32,33 +32,35 @@ namespace Fusee.Tutorial.Core
     [FuseeApplication(Name = "Tutorial Example", Description = "The official FUSEE Tutorial.")]
     public class Tutorial : RenderCanvas
     {
-        static List<RepeatStruct> _repeatList = new List<RepeatStruct>();
-        int _repeatListEntries;
+        #region InvokeRepeating
+        //static List<RepeatStruct> _repeatList = new List<RepeatStruct>();
+        //int _repeatListEntries;
 
-        public static int InvokeRepeating(RepeatAction action, float timeOut)
-        {
-            int iRet = _repeatList.Count;
-            _repeatList.Add(new RepeatStruct { TimeElapsed = 0, TimeOut = timeOut, RepAction = action });
-            return iRet;
-        }
+        //public static int InvokeRepeating(RepeatAction action, float timeOut)
+        //{
+        //    int iRet = _repeatList.Count;
+        //    _repeatList.Add(new RepeatStruct { TimeElapsed = 0, TimeOut = timeOut, RepAction = action });
+        //    return iRet;
+        //}
 
-        public static void StopRepeating(int inx)
-        {
-            _repeatList.RemoveAt(inx);
-        }
+        //public static void StopRepeating(int inx)
+        //{
+        //    _repeatList.RemoveAt(inx);
+        //}
 
-        public void TickRepeatList(float deltaTime)
-        {
-            foreach (var repStruct in _repeatList)
-            {
-                repStruct.TimeElapsed += deltaTime;
-                if (repStruct.TimeElapsed > repStruct.TimeOut)
-                {
-                    repStruct.RepAction();
-                    repStruct.TimeElapsed = 0;
-                }
-            }
-        }
+        //public void TickRepeatList(float deltaTime)
+        //{
+        //    foreach (var repStruct in _repeatList)
+        //    {
+        //        repStruct.TimeElapsed += deltaTime;
+        //        if (repStruct.TimeElapsed > repStruct.TimeOut)
+        //        {
+        //            repStruct.RepAction();
+        //            repStruct.TimeElapsed = 0;
+        //        }
+        //    }
+        //}
+        #endregion
 
         #region Variables
         // angle variables
@@ -121,7 +123,6 @@ namespace Fusee.Tutorial.Core
         private float4 cyanColor;
 
         private List<GUIButton> mapButtons;
-        //private GUIButton towerButton1;
         #endif
 
         #if GUI_SIMPLE
@@ -144,18 +145,19 @@ namespace Fusee.Tutorial.Core
             set { listWuggys = value; }
         }
 
-        public static List<RepeatStruct> RepeatList
-        {
-            get
-            {
-                return _repeatList;
-            }
+        //***InvokeRepeation***
+        //public static List<RepeatStruct> RepeatList
+        //{
+        //    get
+        //    {
+        //        return _repeatList;
+        //    }
 
-            set
-            {
-                _repeatList = value;
-            }
-        }
+        //    set
+        //    {
+        //        _repeatList = value;
+        //    }
+        //}
 
 #endif
         #endregion
@@ -163,11 +165,6 @@ namespace Fusee.Tutorial.Core
         // Init is called on startup. 
         public override void Init()
         {
-            InvokeRepeating(delegate ()
-            {
-                Diagnostics.Log("Tick");
-            }, 10);
-
             Width = 1295;
             Height = 760;
 
@@ -577,7 +574,7 @@ namespace Fusee.Tutorial.Core
                 ZEnable = true
             });
 
-            TickRepeatList(Time.DeltaTime);
+            //TickRepeatList(Time.DeltaTime); //InvokeRepeating
 
             // Create the camera matrix and set it as the current ModelView transformation
             var mtxRot = float4x4.CreateRotationZ(_angleRoll) * float4x4.CreateRotationX(_angleVert) * float4x4.CreateRotationY(_angleHorz);
@@ -616,13 +613,13 @@ namespace Fusee.Tutorial.Core
             foreach (Tower t in listTowers.Values)
             {
 
-                SceneContainer target = t.getClosestWuggy();
+                Wuggy target = t.getClosestWuggy();
                 TransformComponent towerTop = t.Model.Children.FindNodes(c => c.Name == "Tower").First().GetTransform();
                 float topYaw = 0;
 
                 if (target != null)
                 {
-                    float3 delta = target.Children[0].GetTransform().Translation - towerTop.Translation;
+                    float3 delta = target.Model.Children[0].GetTransform().Translation - towerTop.Translation;
                     topYaw = (float)Atan2(delta.z, -delta.x);
                     towerTop.Rotation.y = topYaw;
 
@@ -630,9 +627,10 @@ namespace Fusee.Tutorial.Core
 
                     if (!t.towerIsShoting)
                     {
-                        t.createShot();
                         t.towerShot(true);
                         t.towerIsShoting = true;
+                       
+
                     }
 
                     //topYaw = NormRot(topYaw);
@@ -826,7 +824,7 @@ namespace Fusee.Tutorial.Core
 
                 float3 position = _scene.Children.FindNodes(n => n.Name == name).First().GetTransform().Translation;
                 position.y = position.y + 40.0f;
-                listTowers.Add(currentSelectedTower, new Tower(DeepCopy(_tower), position, 1.0f, 1000.0f, 0));
+                listTowers.Add(currentSelectedTower, new Tower(DeepCopy(_tower), position, 1000, 1000.0f, 10));
 
                 Player.Money -= towerCosts;
                 isUgradeMode = true;
